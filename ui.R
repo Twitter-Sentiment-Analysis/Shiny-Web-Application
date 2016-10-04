@@ -55,40 +55,41 @@ shinyUI(pageWithSidebar(
  "Kitakyushu"   ,        "Klang"         ,       "Kobe"         ,        "Kolkata"      ,        "Konya"     ,           "Korea"         ,       "Kraków"         ,     
  "Krasnodar"    ,        "Krasnoyarsk"   ,       "Kuala Lumpur" ,        "Kumamoto"    ,         "Kumasi"    ,           "Kuwait"        ,       "Kyiv"           ,     
 "Kyoto" ,               "Lagos"    ,            "Lahore"       ,        "Las Palmas",           "Las Vegas"   ,         "Latvia" ,              "Lausanne"       ,     
-[232] "Lebanon"              "Leeds"                "Leicester"            "Leipzig"              "León"                 "Lille"                "Lima"                
-[239] "Liverpool"            "Lodz"                 "London"               "Long Beach"           "Los Angeles"          "Louisville"           "Lucknow"             
-[246] "Lviv"                 "Lyon"                 "Madrid"               "Makassar"             "Makati"               "Malaga"               "Malaysia"            
-[253] "Manaus"               "Manchester"           "Manila"               "Maracaibo"            "Maracay"              "Marseille"            "Maturín"             
-[260] "Mecca"                "Medan"                "Medellín"             "Medina"               "Melbourne"            "Memphis"              "Mendoza"             
-[267] "Mérida"               "Mersin"               "Mesa"                 "Mexicali"             "Mexico"               "Mexico City"          "Miami"               
-[274] "Middlesbrough"        "Milan"                "Milwaukee"            "Minneapolis"          "Minsk"                "Mombasa"              "Monterrey"           
-[281] "Montpellier"          "Montreal"             "Morelia"              "Moscow"               "Multan"               "Mumbai"               "Munich"              
-[288] "Murcia"               "Muscat"               "Nagoya"               "Nagpur"               "Nairobi"              "Nantes"               "Naples"              
-[295] "Nashville"            "Naucalpan de Juárez"  "Netherlands"          "New Haven"            "New Orleans"          "New York"             "New Zealand"         
-[302] "Newcastle"            "Nezahualcóyotl"       "Nigeria"              "Niigata"              "Nizhny Novgorod"      "Norfolk"              "Norway"              
-[309] "Nottingham"           "Novosibirsk"          "Odesa"                "Okayama"              "Okinawa"              "Oklahoma City"        "Omaha"               
-[316] "Oman"                 "Omsk"                 "Orlando"              "Osaka"                "Oslo"                 "Ottawa"               "Pakistan"            
-[323] "Palembang"            "Palermo"              "Palma"                "Panama"               "Paris"                "Pasig"                "Patna"               
-[330] "Pekanbaru"            "Perm"                 "Perth"                "Peru"                 "Petaling"             "Philadelphia"         "Philippines"         
-[337] "Phoenix"              "Pittsburgh"           "Plymouth"             "Poland"               "Port Elizabeth"       "Port Harcourt"        "Portland"            
-[344] "Porto Alegre"         "Portsmouth"           "Portugal"             "Poznań"               "Preston"              "Pretoria"             "Providence"          
-[351] "Puebla"               "Puerto Rico"          "Pune"                 "Qatar"                "Quebec"               "Querétaro"            "Quezon City"         
-[358] "Quito"                "Rajkot"               "Raleigh"              "Ranchi"               "Rawalpindi"           "Recife"               "Rennes"              
-[365] "Richmond"             "Riga"                 "Rio de Janeiro"       "Riyadh"               "Rome"                 "Rosario"              "Rostov-on-Don"       
-[372] "Rotterdam"            "Russia"               "Sacramento"           "Sagamihara"           "Saint Petersburg"     "Saitama"              "Salt Lake City"      
-[379] "Saltillo"             "Salvador"             "Samara"               "San Antonio"          "San Diego"            "San Francisco"        "San Jose"            
-[386] "San Luis Potosí"      "Santiago"             "Santo Domingo"        "São Luís"             "São Paulo"            "Sapporo"              "Saudi Arabia"        
-[393] "Seattle"              "Semarang"             "Sendai"               "Seongnam"             "Seoul"                "Seville"              "Sharjah"             
-[400] "Sheffield"            "Singapore"            "Singapore"            "South Africa"         "Soweto"               "Spain"                "Srinagar"            
-[407] "St. Louis"            "Stockholm"            "Stoke-on-Trent"       "Strasbourg"           "Stuttgart"            "Surabaya"             "Surat"               
-[414] "Suwon"                "Swansea"              "Sweden"               "Switzerland"          "Sydney"               "Taguig"               "Takamatsu"           
-[421] "Tallahassee"          "Tampa"                "Tangerang"            "Tel Aviv"             "Thailand"             "Thane"                "Thessaloniki"        
-[428] "Tijuana"              "Tokyo"                "Toluca"               "Toronto"              "Toulouse"             "Tucson"               "Turin"               
-[435] "Turkey"               "Turmero"              "Ufa"                  "Ukraine"              "Ulsan"                "United Arab Emirates" "United Kingdom"      
-[442] "United States"        "Utrecht"              "Valencia"             "Valencia"             "Valparaiso"           "Vancouver"            "Venezuela"           
-[449] "Vienna"               "Vietnam"              "Virginia Beach"       "Vladivostok"          "Volgograd"            "Voronezh"             "Warsaw"              
-[456] "Washington"           "Winnipeg"             "Worldwide"            "Wroclaw"              "Yekaterinburg"        "Yokohama"             "Yongin"              
-[463] "Zamboanga City"       "Zapopan"              "Zaporozhye"           "Zaragoza"             "Zurich"  ), selected = "Worldwide", selectize = TRUE)
+"Lebanon" ,              "Leeds"   ,             "Leicester",            "Leipzig" ,             "León"        ,         "Lille"  ,              "Lima" ,               
+"Liverpool" ,           "Lodz"     ,            "London"      ,         "Long Beach" ,          "Los Angeles"  ,        "Louisville"       ,    "Lucknow"  ,           
+"Lviv"       ,          "Lyon"          ,       "Madrid"       ,        "Makassar"    ,         "Makati"      ,         "Malaga"          ,     "Malaysia"  ,          
+ "Manaus"     ,          "Manchester"  ,         "Manila"       ,        "Maracaibo"   ,         "Maracay"   ,           "Marseille"     ,       "Maturín"   ,          
+ "Mecca"       ,         "Medan"      ,          "Medellín"      ,       "Medina"       ,        "Melbourne"  ,          "Memphis"      ,        "Mendoza"    ,         
+ "Mérida"       ,        "Mersin"    ,           "Mesa"           ,      "Mexicali"      ,       "Mexico"    ,           "Mexico City" ,         "Miami"       ,        
+ "Middlesbrough" ,       "Milan"    ,            "Milwaukee"       ,     "Minneapolis"    ,      "Minsk"      ,          "Mombasa"    ,          "Monterrey"    ,       
+"Montpellier"     ,     "Montreal" ,            "Morelia"           ,   "Moscow"           ,    "Multan"    ,           "Mumbai"     ,          "Munich"         ,     
+ "Murcia"  ,             "Muscat" ,              "Nagoya"               "Nagpur"            ,   "Nairobi"  ,            "Nantes"    ,           "Naples"          ,    
+ "Nashville" ,           "Naucalpan de Juárez",  "Netherlands",          "New Haven" ,           "New Orleans"      ,    "New York",             "New Zealand"     ,    
+ "Newcastle"  ,          "Nezahualcóyotl"   ,    "Nigeria"     ,         "Niigata"    ,          "Nizhny Novgorod" ,     "Norfolk"           ,   "Norway"          ,    
+"Nottingham"   ,        "Novosibirsk"      ,    "Odesa"         ,       "Okayama"      ,        "Okinawa"         ,     "Oklahoma City"     ,   "Omaha"    ,           
+"Oman"          ,       "Omsk"            ,     "Orlando"        ,      "Osaka"        ,        "Oslo"              ,   "Ottawa"           ,    "Pakistan"  ,          
+"Palembang"      ,      "Palermo"        ,      "Palma"            ,    "Panama"        ,       "Paris"            ,    "Pasig"           ,     "Patna"      ,         
+"Pekanbaru"       ,     "Perm"          ,       "Perth"           ,     "Peru"           ,      "Petaling"        ,     "Philadelphia"   ,      "Philippines" ,        
+"Phoenix"    ,          "Pittsburgh"   ,        "Plymouth"  ,           "Poland"          ,     "Port Elizabeth" ,      "Port Harcourt" ,       "Portland"     ,       
+"Porto Alegre" ,        "Portsmouth"  ,         "Portugal"   ,          "Poznań"           ,    "Preston"       ,       "Pretoria"     ,        "Providence"    ,      
+"Puebla"        ,       "Puerto Rico"    ,      "Pune"        ,         "Qatar"             ,   "Quebec"       ,        "Querétaro"           , "Quezon City"    ,     
+ "Quito"    ,            "Rajkot"       ,        "Raleigh"     ,         "Ranchi"            ,   "Rawalpindi" ,          "Recife"            ,   "Rennes"         ,     
+"Richmond"   ,          "Riga"         ,        "Rio de Janeiro",       "Riyadh"      ,         "Rome"       ,          "Rosario"           ,   "Rostov-on-Don"    ,   
+ "Rotterdam"  ,          "Russia"     ,          "Sacramento"    ,       "Sagamihara"  ,         "Saint Petersburg",     "Saitama"         ,     "Salt Lake City"  ,    
+"Saltillo"     ,        "Salvador"   ,          "Samara"          ,     "San Antonio"   ,       "San Diego"       ,     "San Francisco"   ,     "San Jose"          ,  
+"San Luis Potosí",      "Santiago"  ,           "Santo Domingo"    ,    "São Luís"       ,      "São Paulo"      ,      "Sapporo"        ,      "Saudi Arabia"       , 
+"Seattle"   ,           "Semarang"      ,       "Sendai"            ,   "Seongnam"        ,     "Seoul"         ,       "Seville"       ,       "Sharjah"   ,          
+ "Sheffield" ,           "Singapore"   ,         "Singapore"         ,   "South Africa"    ,     "Soweto"      ,         "Spain"       ,         "Srinagar"  ,          
+ "St. Louis"  ,          "Stockholm"  ,          "Stoke-on-Trent"     ,  "Strasbourg"       ,    "Stuttgart"  ,          "Surabaya"   ,          "Surat"      ,         
+"Suwon"        ,        "Swansea"    ,          "Sweden"     ,          "Switzerland"        ,  "Sydney"     ,          "Taguig"     ,          "Takamatsu"    ,       
+ "Tallahassee"  ,        "Tampa"    ,            "Tangerang"  ,          "Tel Aviv"           ,  "Thailand" ,            "Thane"    ,            "Thessaloniki" ,       
+"Tijuana"        ,      "Tokyo"    ,            "Toluca"       ,        "Toronto"   ,           "Toulouse"          ,   "Tucson"   ,            "Turin"          ,     
+"Turkey"    ,           "Turmero"     ,         "Ufa"           ,       "Ukraine"    ,          "Ulsan"            ,    "United Arab Emirates", "United Kingdom"   ,   
+ "United States" ,       "Utrecht"   ,           "Valencia"      ,       "Valencia"   ,          "Valparaiso"     ,      "Vancouver"   ,         "Venezuela"      ,     
+"Vienna"      ,         "Vietnam"   ,           "Virginia Beach"  ,     "Vladivostok"  ,        "Volgograd"      ,      "Voronezh"    ,         "Warsaw"  ,            
+ "Washington"  ,         "Winnipeg",             "Worldwide"       ,     "Wroclaw"      ,        "Yekaterinburg",        "Yokohama"  ,           "Yongin",              
+"Zamboanga City" ,      "Zapopan",              "Zaporozhye"       ,    "Zaragoza"       ,      "Zurich"  ), selected = "Worldwide", selectize = TRUE)
+
 
        tabPanel("WordCloud",HTML("<div>Most used words associated with the hashtag</div>"),verbatimTextOutput("wordcloud"),plotOutput("word"),
                HTML
