@@ -22,39 +22,39 @@ shinyUI(pageWithSidebar(
       
 	 tabPanel("Top Trending Tweets Today",HTML("<div>Top Trending Tweets according to location</div>"),verbatimTextOutput("trending")),
 	
-	 selectInput("trendingTable","Choose location to extract trending tweets",c("Worldwide" ,  "Abu Dhabi"            "Acapulco"             "Accra"                "Adana"                "Adelaide"             "Aguascalientes"       "Ahmedabad"           
-  [8] "Ahsa"                 "Albuquerque"          "Alexandria"           "Algeria"              "Algiers"              "Amman"                "Amritsar"            
- [15] "Amsterdam"            "Ankara"               "Ansan"                "Antalya"              "Antipolo"             "Argentina"            "Athens"              
- [22] "Atlanta"              "Auckland"             "Austin"               "Australia"            "Austria"              "Bahrain"              "Baltimore"           
- [29] "Bandung"              "Bangalore"            "Bangkok"              "Barcelona"            "Barcelona"            "Barquisimeto"         "Barranquilla"        
- [36] "Baton Rouge"          "Bekasi"               "Belarus"              "Belém"                "Belfast"              "Belgium"              "Belo Horizonte"      
- [43] "Benin City"           "Bergen"               "Berlin"               "Bhopal"               "Bilbao"               "Birmingham"           "Birmingham"          
- [50] "Blackpool"            "Bogotá"               "Bologna"              "Bordeaux"             "Boston"               "Bournemouth"          "Brasília"            
- [57] "Brazil"               "Bremen"               "Brest"                "Brighton"             "Brisbane"             "Bristol"              "Bucheon"             
- [64] "Buenos Aires"         "Bursa"                "Busan"                "Cagayan de Oro"       "Cairo"                "Calgary"              "Cali"                
- [71] "Calocan"              "Campinas"             "Can Tho"              "Canada"               "Canberra"             "Cape Town"            "Caracas"             
- [78] "Cardiff"              "Cebu City"            "Changwon"             "Charlotte"            "Chelyabinsk"          "Chennai"              "Chiba"               
- [85] "Chicago"              "Chihuahua"            "Chile"                "Cincinnati"           "Ciudad Guayana"       "Ciudad Juarez"        "Cleveland"           
- [92] "Cologne"              "Colombia"             "Colorado Springs"     "Columbus"             "Concepcion"           "Córdoba"              "Cork"                
- [99] "Coventry"             "Culiacán"             "Curitiba"             "Da Nang"              "Daegu"                "Daejeon"              "Dallas-Ft. Worth"    
-[106] "Dammam"               "Darwin"               "Davao City"           "Delhi"                "Den Haag"             "Denmark"              "Denver"              
-[113] "Depok"                "Derby"                "Detroit"              "Diyarbakır"           "Dnipropetrovsk"       "Dominican Republic"   "Donetsk"             
-[120] "Dortmund"             "Dresden"              "Dubai"                "Dublin"               "Durban"               "Dusseldorf"           "Ecatepec de Morelos" 
-[127] "Ecuador"              "Edinburgh"            "Edmonton"             "Egypt"                "El Paso"              "Eskişehir"            "Essen"               
-[134] "Faisalabad"           "Fortaleza"            "France"               "Frankfurt"            "Fresno"               "Fukuoka"              "Galway"              
-[141] "Gaziantep"            "Gdańsk"               "Geneva"               "Genoa"                "Germany"              "Ghana"                "Giza"                
-[148] "Glasgow"              "Goiânia"              "Gomel"                "Gothenburg"           "Goyang"               "Greece"               "Greensboro"          
-[155] "Grodno"               "Guadalajara"          "Guarulhos"            "Guatemala"            "Guatemala City"       "Guayaquil"            "Gwangju"             
-[162] "Hai Phong"            "Haifa"                "Hamamatsu"            "Hamburg"              "Hanoi"                "Harrisburg"           "Hermosillo"          
-[169] "Hiroshima"            "Ho Chi Minh City"     "Honolulu"             "Houston"              "Hull"                 "Hulu Langat"          "Hyderabad"           
-[176] "Ibadan"               "Incheon"              "India"                "Indianapolis"         "Indonesia"            "Indore"               "Ipoh"                
-[183] "Ireland"              "Irkutsk"              "Israel"               "Istanbul"             "Italy"                "Izmir"                "Jackson"             
-[190] "Jacksonville"         "Jaipur"               "Jakarta"              "Japan"                "Jeddah"               "Jerusalem"            "Johannesburg"        
-[197] "Johor Bahru"          "Jordan"               "Kaduna"               "Kajang"               "Kano"                 "Kanpur"               "Kansas City"         
-[204] "Karachi"              "Kawasaki"             "Kayseri"              "Kazan"                "Kenya"                "Khabarovsk"           "Kharkiv"             
-[211] "Kitakyushu"           "Klang"                "Kobe"                 "Kolkata"              "Konya"                "Korea"                "Kraków"              
-[218] "Krasnodar"            "Krasnoyarsk"          "Kuala Lumpur"         "Kumamoto"             "Kumasi"               "Kuwait"               "Kyiv"                
-[225] "Kyoto"                "Lagos"                "Lahore"               "Las Palmas"           "Las Vegas"            "Latvia"               "Lausanne"            
+	 selectInput("trendingTable","Choose location to extract trending tweets",c("Worldwide" ,  "Abu Dhabi" ,"Acapulco" , "Accra" , 
+										    "Adana" , "Adela", "Aguascalientes" , "Ahmedabad" ,         
+   "Ahsa" , "Albuquerque" , "Alexandria" , "Algeria" , "Algiers" , "Amman" , "Amritsar" , "Amsterdam",  "Ankara" , "Ansan" ,
+	"Antalya" , "Antipolo" , "Argentina" ,  "Athens" ,  
+  "Atlanta" ,             "Auckland" ,            "Austin" ,              "Australia" ,           "Austria"  ,            "Bahrain"     ,         "Baltimore"  ,         
+  "Bandung"   ,           "Bangalore" ,           "Bangkok",              "Barcelona" ,           "Barcelona",            "Barquisimeto",         "Barranquilla"  ,      
+  "Baton Rouge" ,         "Bekasi"    ,           "Belarus",              "Belém"     ,           "Belfast"  ,            "Belgium"     ,         "Belo Horizonte",      
+  "Benin City"  ,         "Bergen"    ,           "Berlin" ,              "Bhopal"    ,           "Bilbao"   ,            "Birmingham"  ,         "Birmingham"    ,      
+  "Blackpool"   ,         "Bogotá"    ,           "Bologna",              "Bordeaux"  ,           "Boston"   ,            "Bournemouth" ,         "Brasília"      ,      
+  "Brazil"      ,         "Bremen"    ,           "Brest"  ,              "Brighton"  ,           "Brisbane" ,            "Bristol"     ,         "Bucheon"       ,      
+  "Buenos Aires",         "Bursa"     ,           "Busan"  ,              "Cagayan de Oro" ,      "Cairo"    ,            "Calgary"     ,         "Cali"      ,          
+  "Calocan"     ,         "Campinas"  ,           "Can Tho",              "Canada"    ,           "Canberra"  ,           "Cape Town"   ,         "Caracas"   ,          
+  "Cardiff"     ,         "Cebu City" ,           "Changwon" ,            "Charlotte" ,           "Chelyabinsk" ,         "Chennai"     ,         "Chiba"     ,          
+  "Chicago"     ,         "Chihuahua" ,           "Chile"    ,            "Cincinnati",           "Ciudad Guayana" ,      "Ciudad Juarez",        "Cleveland" ,          
+  "Cologne"     ,         "Colombia"  ,           "Colorado Springs",     "Columbus"  ,           "Concepcion" ,          "Córdoba"      ,        "Cork"      ,          
+  "Coventry"    ,         "Culiacán"  ,           "Curitiba"    ,         "Da Nang"   ,           "Daegu"      ,          "Daejeon"      ,        "Dallas-Ft. Worth" ,   
+ "Dammam"  , "Darwin" ,"Davao City", "Delhi", "Den Haag" , "Denmark" ,"Denver" ,  "Depok" , "Derby" , "Detroit" , "Diyarbakır" , "Dnipropetrovsk" ,"Dominican Republic","Donetsk",
+ "Dortmund"  ,           "Dresden" ,             "Dubai"         ,       "Dublin"      ,         "Durban"       ,        "Dusseldorf"    ,       "Ecatepec de Morelos", 
+ "Ecuador"       ,       "Edinburgh" ,           "Edmonton"      ,       "Egypt"       ,         "El Paso"      ,        "Eskişehir"     ,       "Essen"    ,           
+ "Faisalabad"    ,       "Fortaleza"  ,          "France"        ,       "Frankfurt"   ,         "Fresno"       ,        "Fukuoka"       ,       "Galway"   ,           
+ "Gaziantep"    ,        "Gdańsk"      ,         "Geneva"       ,        "Genoa"       ,         "Germany"      ,        "Ghana"         ,       "Giza"     ,           
+ "Glasgow"      ,        "Goiânia"     ,         "Gomel"        ,        "Gothenburg"  ,         "Goyang"       ,        "Greece"        ,       "Greensboro" ,         
+ "Grodno"       ,        "Guadalajara" ,         "Guarulhos"    ,        "Guatemala"   ,         "Guatemala City"  ,     "Guayaquil"     ,       "Gwangju"  ,           
+ "Hai Phong"    ,        "Haifa"       ,         "Hamamatsu"    ,        "Hamburg"     ,         "Hanoi"      ,          "Harrisburg"    ,       "Hermosillo"     ,     
+ "Hiroshima"    ,        "Ho Chi Minh City" ,    "Honolulu"     ,        "Houston"     ,         "Hull"       ,          "Hulu Langat"   ,       "Hyderabad"      ,     
+ "Ibadan"       ,        "Incheon"      ,        "India"        ,        "Indianapolis",         "Indonesia" ,           "Indore"        ,       "Ipoh"           ,     
+ "Ireland"      ,        "Irkutsk"       ,       "Israel"       ,        "Istanbul"    ,         "Italy"     ,           "Izmir"         ,       "Jackson"        ,     
+ "Jacksonville" ,        "Jaipur"        ,       "Jakarta"      ,        "Japan"       ,         "Jeddah"    ,           "Jerusalem"     ,       "Johannesburg"   ,     
+ "Johor Bahru"  ,        "Jordan"        ,       "Kaduna"       ,        "Kajang"      ,         "Kano"      ,           "Kanpur"        ,       "Kansas City"    ,     
+ "Karachi"      ,        "Kawasaki"      ,       "Kayseri"      ,        "Kazan"       ,         "Kenya"     ,           "Khabarovsk"    ,       "Kharkiv"        ,     
+ "Kitakyushu"   ,        "Klang"         ,       "Kobe"         ,        "Kolkata"      ,        "Konya"     ,           "Korea"         ,       "Kraków"         ,     
+ "Krasnodar"    ,        "Krasnoyarsk"   ,       "Kuala Lumpur" ,        "Kumamoto"    ,         "Kumasi"    ,           "Kuwait"        ,       "Kyiv"           ,     
+"Kyoto" ,               "Lagos"    ,            "Lahore"       ,        "Las Palmas",           "Las Vegas"   ,         "Latvia" ,              "Lausanne"       ,     
 [232] "Lebanon"              "Leeds"                "Leicester"            "Leipzig"              "León"                 "Lille"                "Lima"                
 [239] "Liverpool"            "Lodz"                 "London"               "Long Beach"           "Los Angeles"          "Louisville"           "Lucknow"             
 [246] "Lviv"                 "Lyon"                 "Madrid"               "Makassar"             "Makati"               "Malaga"               "Malaysia"            
