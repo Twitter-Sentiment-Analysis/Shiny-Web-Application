@@ -46,54 +46,55 @@ shinyUI(pageWithSidebar(
  "Cork"          ,       "Dublin"      ,         "Galway"           ,    "Bordeaux"   ,          "Lille"       ,        
  "Lyon"         ,        "Marseille"    ,        "Montpellier"     ,     "Nantes"      ,         "Paris"      ,         
  "Rennes"      ,         "Strasbourg"    ,       "Toulouse"       ,      "Berlin"       ,        "Bremen"      ,        
-[121] "Dortmund"             "Dresden"              "Dusseldorf"           "Essen"    ,            "Frankfurt",           
-[126] "Hamburg"              "Cologne"              "Leipzig"              "Munich"    ,           "Stuttgart"           
-[131] "Bologna"              "Genoa"                "Milan"                "Naples"     ,          "Palermo"             
-[136] "Rome"                 "Turin"                "Den Haag"             "Amsterdam"   ,         "Rotterdam"           
-[141] "Utrecht"              "Barcelona"            "Bilbao"               "Las Palmas"   ,        "Madrid"              
-[146] "Malaga"               "Murcia"               "Palma"                "Seville"       ,       "Valencia"            
-[151] "Zaragoza"             "Geneva"               "Lausanne"             "Zurich"         ,      "Brest"              156] "Grodno"               "Gomel"                "Minsk"                "Riga"                 "Bergen"              
-[161] "Oslo"                 "Gothenburg"           "Stockholm"            "Dnipropetrovsk"       "Donetsk"             
-[166] "Kharkiv"              "Kyiv"                 "Lviv"                 "Odesa"                "Zaporozhye"          
-[171] "Athens"               "Thessaloniki"         "Bekasi"               "Depok"                "Pekanbaru"           
-[176] "Surabaya"             "Makassar"             "Bandung"              "Jakarta"              "Medan"               
-[181] "Palembang"            "Semarang"             "Tangerang"            "Singapore"            "Perth"               
-[186] "Adelaide"             "Brisbane"             "Canberra"             "Darwin"               "Melbourne"           
-[191] "Sydney"               "Kitakyushu"           "Saitama"              "Chiba"                "Fukuoka"             
-[196] "Hamamatsu"            "Hiroshima"            "Kawasaki"             "Kobe"                 "Kumamoto"            
-[201] "Nagoya"               "Niigata"              "Sagamihara"           "Sapporo"              "Sendai"              
-[206] "Takamatsu"            "Tokyo"                "Yokohama"             "Goyang"               "Yongin"              
-[211] "Ansan"                "Bucheon"              "Busan"                "Changwon"             "Daegu"               
-[216] "Gwangju"              "Incheon"              "Seongnam"             "Suwon"                "Ulsan"               
-[221] "Seoul"                "Kajang"               "Ipoh"                 "Johor Bahru"          "Klang"               
-[226] "Kuala Lumpur"         "Calocan"              "Makati"               "Pasig"                "Taguig"              
-[231] "Antipolo"             "Cagayan de Oro"       "Cebu City"            "Davao City"           "Manila"              
-[236] "Quezon City"          "Zamboanga City"       "Bangkok"              "Hanoi"                "Hai Phong"           
-[241] "Can Tho"              "Da Nang"              "Ho Chi Minh City"     "Algiers"              "Accra"               
-[246] "Kumasi"               "Benin City"           "Ibadan"               "Kaduna"               "Kano"                
-[251] "Lagos"                "Port Harcourt"        "Giza"                 "Cairo"                "Alexandria"          
-[256] "Mombasa"              "Nairobi"              "Durban"               "Johannesburg"         "Port Elizabeth"      
-[261] "Pretoria"             "Soweto"               "Cape Town"            "Medina"               "Dammam"              
-[266] "Riyadh"               "Jeddah"               "Mecca"                "Sharjah"              "Abu Dhabi"           
-[271] "Dubai"                "Haifa"                "Tel Aviv"             "Jerusalem"            "Amman"               
-[276] "Chelyabinsk"          "Khabarovsk"           "Krasnodar"            "Krasnoyarsk"          "Samara"              
-[281] "Voronezh"             "Yekaterinburg"        "Irkutsk"              "Kazan"                "Moscow"              
-[286] "Nizhny Novgorod"      "Novosibirsk"          "Omsk"                 "Perm"                 "Rostov-on-Don"       
-[291] "Saint Petersburg"     "Ufa"                  "Vladivostok"          "Volgograd"            "Karachi"             
-[296] "Lahore"               "Multan"               "Rawalpindi"           "Faisalabad"           "Muscat"              
-[301] "Nagpur"               "Lucknow"              "Kanpur"               "Patna"                "Ranchi"              
-[306] "Kolkata"              "Srinagar"             "Amritsar"             "Jaipur"               "Ahmedabad"           
-[311] "Rajkot"               "Surat"                "Bhopal"               "Indore"               "Thane"               
-[316] "Mumbai"               "Pune"                 "Hyderabad"            "Bangalore"            "Chennai"             
-[321] "Mersin"               "Adana"                "Ankara"               "Antalya"              "Bursa"               
-[326] "Diyarbakır"           "Eskişehir"            "Gaziantep"            "Istanbul"             "Izmir"               
-[331] "Kayseri"              "Konya"                "Okinawa"              "Daejeon"              "Auckland"            
-[336] "Albuquerque"          "Atlanta"              "Austin"               "Baltimore"            "Baton Rouge"         
-[341] "Birmingham"           "Boston"               "Charlotte"            "Chicago"              "Cincinnati"          
- "Cleveland"            "Colorado Springs"     "Columbus"             "Dallas-Ft. Worth"     "Denver"              
- "Detroit"              "El Paso"              "Fresno"               "Greensboro"           "Harrisburg"         , 
- "Honolulu"             "Houston"              "Indianapolis"    ,     "Jackson"       ,       "Jacksonville"    ,    
- "Kansas City"          "Las Vegas"            "Long Beach"      ,     "Los Angeles"    ,      "Louisville"      ,    
+[121] "Dortmund"             "Dresden"       ,       "Dusseldorf"           "Essen"    ,            "Frankfurt",           
+[126] "Hamburg"              "Cologne"       ,       "Leipzig"              "Munich"    ,           "Stuttgart"    ,       
+[131] "Bologna"              "Genoa"         ,       "Milan"                "Naples"     ,          "Palermo"      ,       
+[136] "Rome"                 "Turin"         ,       "Den Haag"             "Amsterdam"   ,         "Rotterdam"    ,       
+[141] "Utrecht"              "Barcelona"     ,       "Bilbao"               "Las Palmas"   ,        "Madrid"       ,       
+[146] "Malaga"               "Murcia"        ,       "Palma"                "Seville"       ,       "Valencia"     ,       
+[151] "Zaragoza"             "Geneva"        ,       "Lausanne"             "Zurich"         ,      "Brest"        ,      
+156] "Grodno"               "Gomel"          ,      "Minsk"                "Riga"            ,     "Bergen"        ,      
+[161] "Oslo"                 "Gothenburg"    ,       "Stockholm"            "Dnipropetrovsk" ,      "Donetsk"      ,       
+[166] "Kharkiv"              "Kyiv"           ,      "Lviv"                 "Odesa"          ,      "Zaporozhye"   ,       
+[171] "Athens"               "Thessaloniki"  ,       "Bekasi"               "Depok"          ,      "Pekanbaru"    ,       
+[176] "Surabaya"             "Makassar"      ,       "Bandung"              "Jakarta"        ,      "Medan"        ,       
+[181] "Palembang"            "Semarang"      ,       "Tangerang"            "Singapore"      ,      "Perth"        ,       
+[186] "Adelaide"             "Brisbane"      ,       "Canberra"             "Darwin"         ,      "Melbourne"    ,       
+[191] "Sydney"               "Kitakyushu"    ,       "Saitama"              "Chiba"          ,      "Fukuoka"      ,       
+[196] "Hamamatsu"            "Hiroshima"     ,       "Kawasaki"             "Kobe"           ,      "Kumamoto"     ,       
+[201] "Nagoya"               "Niigata"        ,      "Sagamihara"           "Sapporo"        ,      "Sendai"       ,       
+[206] "Takamatsu"            "Tokyo"          ,      "Yokohama"             "Goyang"         ,      "Yongin"       ,       
+[211] "Ansan"                "Bucheon"        ,      "Busan"                "Changwon"       ,      "Daegu"        ,       
+[216] "Gwangju"              "Incheon"        ,      "Seongnam"             "Suwon"          ,      "Ulsan"         ,      
+[221] "Seoul"                "Kajang"         ,      "Ipoh"                 "Johor Bahru"    ,      "Klang"        ,       
+[226] "Kuala Lumpur"         "Calocan"        ,      "Makati"               "Pasig"          ,      "Taguig"       ,       
+[231] "Antipolo"             "Cagayan de Oro" ,      "Cebu City"            "Davao City"     ,      "Manila"       ,       
+[236] "Quezon City"          "Zamboanga City" ,      "Bangkok"              "Hanoi"          ,      "Hai Phong"    ,       
+[241] "Can Tho"              "Da Nang"        ,      "Ho Chi Minh City"     "Algiers"        ,      "Accra"        ,       
+[246] "Kumasi"               "Benin City"     ,      "Ibadan"               "Kaduna"         ,      "Kano"          ,      
+[251] "Lagos"                "Port Harcourt"  ,      "Giza"                 "Cairo"          ,      "Alexandria"    ,      
+[256] "Mombasa"              "Nairobi"        ,      "Durban"               "Johannesburg"   ,      "Port Elizabeth",      
+[261] "Pretoria"             "Soweto"         ,      "Cape Town"            "Medina"         ,      "Dammam"        ,      
+[266] "Riyadh"               "Jeddah"         ,      "Mecca"                "Sharjah"         ,     "Abu Dhabi"     ,      
+[271] "Dubai"                "Haifa"          ,      "Tel Aviv"             "Jerusalem"       ,     "Amman"         ,      
+[276] "Chelyabinsk"          "Khabarovsk"     ,      "Krasnodar"            "Krasnoyarsk"     ,     "Samara"        ,      
+[281] "Voronezh"             "Yekaterinburg"  ,      "Irkutsk"              "Kazan"          ,      "Moscow"        ,      
+[286] "Nizhny Novgorod"      "Novosibirsk"    ,      "Omsk"                 "Perm"           ,      "Rostov-on-Don" ,      
+[291] "Saint Petersburg"     "Ufa"        ,          "Vladivostok"          "Volgograd"      ,      "Karachi"  ,           
+[296] "Lahore"               "Multan"     ,          "Rawalpindi"           "Faisalabad"     ,      "Muscat"   ,           
+[301] "Nagpur"               "Lucknow"    ,          "Kanpur"               "Patna"          ,      "Ranchi"   ,           
+[306] "Kolkata"              "Srinagar"   ,          "Amritsar"             "Jaipur"         ,      "Ahmedabad",           
+[311] "Rajkot"               "Surat"      ,          "Bhopal"               "Indore"         ,      "Thane"    ,           
+[316] "Mumbai"               "Pune"       ,          "Hyderabad"            "Bangalore"      ,      "Chennai"  ,           
+[321] "Mersin"               "Adana"      ,          "Ankara"      ,         "Antalya"       ,       "Bursa"   ,            
+[326] "Diyarbakır"           "Eskişehir"  ,          "Gaziantep"   ,         "Istanbul"      ,       "Izmir"   ,            
+[331] "Kayseri"              "Konya"      ,          "Okinawa"     ,         "Daejeon"       ,       "Auckland" ,           
+[336] "Albuquerque"          "Atlanta"   ,           "Austin"      ,         "Baltimore"     ,       "Baton Rouge"  ,       
+[341] "Birmingham" ,          "Boston"     ,          "Charlotte" ,           "Chicago"     ,         "Cincinnati"  ,        
+ "Cleveland"      ,      "Colorado Springs" ,    "Columbus"       ,      "Dallas-Ft. Worth" ,    "Denver"           ,   
+ "Detroit"        ,      "El Paso"          ,    "Fresno"         ,      "Greensboro"      ,     "Harrisburg"         , 
+ "Honolulu"       ,      "Houston"          ,    "Indianapolis"    ,     "Jackson"       ,       "Jacksonville"    ,    
+ "Kansas City"    ,      "Las Vegas"        ,    "Long Beach"      ,     "Los Angeles"    ,      "Louisville"      ,    
  "Memphis"            ,  "Mesa"      ,           "Miami"          ,      "Milwaukee"    ,        "Minneapolis"   ,      
  "Nashville"         ,   "New Haven"  ,          "New Orleans"    ,      "New York"     ,        "Norfolk"       ,      
  "Oklahoma City"    ,    "Omaha"       ,         "Orlando"        ,      "Philadelphia"  ,       "Phoenix"       ,      
