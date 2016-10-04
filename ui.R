@@ -92,30 +92,30 @@ shinyUI(pageWithSidebar(
 [336] "Albuquerque"          "Atlanta"              "Austin"               "Baltimore"            "Baton Rouge"         
 [341] "Birmingham"           "Boston"               "Charlotte"            "Chicago"              "Cincinnati"          
  "Cleveland"            "Colorado Springs"     "Columbus"             "Dallas-Ft. Worth"     "Denver"              
- "Detroit"              "El Paso"              "Fresno"               "Greensboro"           "Harrisburg"          
- "Honolulu"             "Houston"              "Indianapolis"         "Jackson"              "Jacksonville"        
- "Kansas City"          "Las Vegas"            "Long Beach"           "Los Angeles"          "Louisville"          
- "Memphis"              "Mesa"                 "Miami"                "Milwaukee"            "Minneapolis"         
- "Nashville"            "New Haven"            "New Orleans"          "New York"             "Norfolk"             
- "Oklahoma City"        "Omaha"                "Orlando"              "Philadelphia"         "Phoenix"             
- "Pittsburgh"           "Portland"             "Providence"           "Raleigh"              "Richmond"            
- "Sacramento"           "St. Louis"            "Salt Lake City"       "San Antonio"          "San Diego"           
- "San Francisco"        "San Jose"             "Seattle"              "Tallahassee"          "Tampa"               
- "Tucson"               "Virginia Beach"       "Washington"           "Osaka"                "Kyoto"               
- "Delhi"                "United Arab Emirates" "Algeria"              "Argentina"            "Australia"           
- "Austria"              "Bahrain"              "Belgium"              "Belarus"              "Brazil"              
- "Canada"               "Chile"                "Colombia"             "Denmark"              "Dominican Republic"  
- "Ecuador"              "Egypt"                "Ireland"              "France"               "Ghana"               
- "Germany"              "Greece"               "Guatemala"            "Indonesia"            "India"               
- "Israel"               "Italy"                "Japan"                "Jordan"               "Kenya"               
- "Korea"                "Kuwait"               "Lebanon"              "Latvia"               "Oman"                
- "Mexico"               "Malaysia"             "Nigeria"              "Netherlands"          "Norway"              
- "New Zealand"          "Peru"                 "Pakistan"             "Poland"               "Panama"              
- "Portugal"             "Qatar"                "Philippines"          "Puerto Rico"          "Russia"              
- "Saudi Arabia"         "South Africa"         "Singapore"            "Spain"                "Sweden"              
- "Switzerland"          "Thailand"             "Turkey"               "United Kingdom"       "Ukraine"             
- "United States"        "Venezuela"            "Vietnam"              "Petaling"             "Hulu Langat"         
- "Ahsa"                 "Okayama"  ), selected = "Worldwide", selectize = TRUE)
+ "Detroit"              "El Paso"              "Fresno"               "Greensboro"           "Harrisburg"         , 
+ "Honolulu"             "Houston"              "Indianapolis"    ,     "Jackson"       ,       "Jacksonville"    ,    
+ "Kansas City"          "Las Vegas"            "Long Beach"      ,     "Los Angeles"    ,      "Louisville"      ,    
+ "Memphis"            ,  "Mesa"      ,           "Miami"          ,      "Milwaukee"    ,        "Minneapolis"   ,      
+ "Nashville"         ,   "New Haven"  ,          "New Orleans"    ,      "New York"     ,        "Norfolk"       ,      
+ "Oklahoma City"    ,    "Omaha"       ,         "Orlando"        ,      "Philadelphia"  ,       "Phoenix"       ,      
+ "Pittsburgh"      ,     "Portland"    ,         "Providence"     ,      "Raleigh"       ,       "Richmond"      ,      
+ "Sacramento"     ,      "St. Louis"   ,         "Salt Lake City" ,      "San Antonio"   ,       "San Diego"     ,      
+ "San Francisco" ,       "San Jose"    ,         "Seattle"       ,       "Tallahassee"   ,       "Tampa"        ,       
+ "Tucson"       ,        "Virginia Beach" ,      "Washington"    ,       "Osaka"         ,       "Kyoto"        ,       
+ "Delhi"       ,         "United Arab Emirates", "Algeria"       ,       "Argentina"     ,       "Australia"   ,        
+ "Austria"    ,          "Bahrain"    ,          "Belgium"       ,       "Belarus"       ,       "Brazil"      ,        
+ "Canada"    ,           "Chile"      ,          "Colombia"      ,       "Denmark"       ,       "Dominican Republic",  
+ "Ecuador"  ,            "Egypt"      ,          "Ireland"       ,       "France"        ,       "Ghana"       ,        
+ "Germany" ,             "Greece"     ,          "Guatemala"     ,       "Indonesia"     ,       "India"       ,        
+ "Israel"             ,  "Italy"      ,          "Japan"         ,       "Jordan"        ,       "Kenya"       ,        
+ "Korea"             ,   "Kuwait"     ,          "Lebanon"       ,       "Latvia"        ,       "Oman"        ,        
+ "Mexico"           ,    "Malaysia"   ,          "Nigeria"       ,       "Netherlands"   ,       "Norway"      ,        
+ "New Zealand"     ,     "Peru"       ,          "Pakistan"      ,       "Poland"        ,       "Panama"      ,        
+ "Portugal"       ,      "Qatar"      ,          "Philippines"   ,       "Puerto Rico"   ,       "Russia"      ,        
+ "Saudi Arabia"      ,   "South Africa"  ,       "Singapore"     ,       "Spain"          ,      "Sweden"      ,        
+ "Switzerland"      ,    "Thailand"      ,       "Turkey"        ,       "United Kingdom"  ,     "Ukraine"     ,        
+ "United States"   ,     "Venezuela"     ,       "Vietnam"       ,       "Petaling"         ,    "Hulu Langat" ,        
+ "Ahsa"           ,      "Okayama"  ), selected = "Worldwide", selectize = TRUE)
 
        tabPanel("WordCloud",HTML("<div>Most used words associated with the hashtag</div>"),verbatimTextOutput("wordcloud"),plotOutput("word"),
                HTML
