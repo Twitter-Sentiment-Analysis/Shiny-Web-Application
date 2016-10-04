@@ -20,7 +20,7 @@ shinyUI(pageWithSidebar(
   mainPanel(
     tabsetPanel(
       
-	 tabPanel("Top Trending Tweets Today",HTML("<div>Top Trending Tweets according to location</div>"),verbatimTextOutput("trending")),
+	 tabPanel("Top Trending Tweets Today",HTML("<div>Top Trending Tweets according to location</div>"),
 	
 	 selectInput("trendingTable","Choose location to extract trending tweets",c("Worldwide" ,  "Abu Dhabi" ,"Acapulco" , "Accra" , 
 										    "Adana" , "Adela", "Aguascalientes" , "Ahmedabad" ,         
@@ -87,7 +87,7 @@ shinyUI(pageWithSidebar(
  "United States" ,       "Utrecht"   ,           "Valencia"      ,       "Valencia"   ,          "Valparaiso"     ,      "Vancouver"   ,         "Venezuela"      ,     
 "Vienna"      ,         "Vietnam"   ,           "Virginia Beach"  ,     "Vladivostok"  ,        "Volgograd"      ,      "Voronezh"    ,         "Warsaw"  ,            
  "Washington"  ,         "Winnipeg",  "Wroclaw"      ,        "Yekaterinburg",        "Yokohama"  ,  "Yongin",              
-"Zamboanga City" ,      "Zapopan",              "Zaporozhye"       ,    "Zaragoza"       ,      "Zurich" ), selected = "Worldwide", selectize = FALSE)
+"Zamboanga City" ,      "Zapopan",              "Zaporozhye"       ,    "Zaragoza"       ,      "Zurich" ), selected = "Worldwide", selectize = FALSE),verbatimTextOutput("trending")),
 
 
        tabPanel("WordCloud",HTML("<div>Most used words associated with the hashtag</div>"),verbatimTextOutput("wordcloud"),plotOutput("word"),
