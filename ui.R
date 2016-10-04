@@ -87,7 +87,12 @@ shinyUI(pageWithSidebar(
  "United States" ,       "Utrecht"   ,           "Valencia"      ,       "Valencia"   ,          "Valparaiso"     ,      "Vancouver"   ,         "Venezuela"      ,     
 "Vienna"      ,         "Vietnam"   ,           "Virginia Beach"  ,     "Vladivostok"  ,        "Volgograd"      ,      "Voronezh"    ,         "Warsaw"  ,            
  "Washington"  ,         "Winnipeg",  "Wroclaw"      ,        "Yekaterinburg",        "Yokohama"  ,  "Yongin",              
-"Zamboanga City" ,      "Zapopan",              "Zaporozhye"       ,    "Zaragoza"       ,      "Zurich" ), selected = "Worldwide", selectize = FALSE),verbatimTextOutput("trending")),
+"Zamboanga City" ,      "Zapopan",              "Zaporozhye"       ,    "Zaragoza"       ,      "Zurich"  ), selected = "Worldwide", selectize = FALSE),
+            HTML("<div> The table below shows the top 20 trending 
+	hashtags on Twitter of the location you have chosen. These are the hot topics today! </div>"),
+   verbatimTextOutput("wordcloud"),plotOutput("word"),
+			HTML
+               ("<div> </div>")),
 
 
        tabPanel("WordCloud",HTML("<div>Most used words associated with the hashtag</div>"),verbatimTextOutput("wordcloud"),plotOutput("word"),
