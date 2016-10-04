@@ -23,37 +23,36 @@ shinyUI(pageWithSidebar(
 	 tabPanel("Top Trending Tweets Today",HTML("<div>Top Trending Tweets according to location</div>"),verbatimTextOutput("trending")),
 	
 	 selectInput("trendingTable","Choose location to extract trending tweets",c("Worldwide" , "Winnipeg"  , "Ottawa" ,             "Quebec"               "Montreal"            
-   "Toronto"              "Edmonton"             "Calgary"              "Vancouver"            "Birmingham"          
-  "Blackpool"            "Bournemouth"          "Brighton"             "Bristol"              "Cardiff"             
-  "Coventry"             "Derby"                "Edinburgh"            "Glasgow"              "Hull"                
-  "Leeds"                "Leicester"            "Liverpool"            "Manchester"           "Middlesbrough"       
-  "Newcastle"            "Nottingham"           "Plymouth"             "Portsmouth"           "Preston"             
-  "Sheffield"            "Stoke-on-Trent"       "Swansea"              "London"               "Belfast"             
-  "Santo Domingo"        "Guatemala City"       "Acapulco"             "Aguascalientes"       "Chihuahua"           
-  "Mexico City"          "Ciudad Juarez"        "Nezahualcóyotl"       "Culiacán"             "Ecatepec de Morelos"  
- "Guadalajara"          "Hermosillo"           "León"                 "Mérida"               "Mexicali"            
-  "Monterrey"            "Morelia"              "Naucalpan de Juárez"  "Puebla"               "Querétaro"           
-  "Saltillo"             "San Luis Potosí"      "Tijuana"              "Toluca"               "Zapopan"             
-  "Mendoza"              "Santiago"             "Concepcion"           "Valparaiso"           "Bogotá"              
-  "Cali"                 "Medellín"             "Barranquilla"         "Quito"                "Guayaquil"           
-  "Caracas"              "Maracaibo"            "Maracay"              "Valencia"             "Barcelona"           
-  "Ciudad Guayana"       "Turmero"              "Lima"                 "Brasília"             "Belém"               
-  "Belo Horizonte"       "Curitiba"             "Porto Alegre"         "Recife"               "Rio de Janeiro"      
-  "Salvador"             "São Paulo"            "Campinas"             "Fortaleza"            "Goiânia"             
-  "Manaus"               "São Luís"             "Guarulhos"            "Córdoba"              "Rosario"             
- "Barquisimeto"         "Maturín"              "Buenos Aires"         "Gdańsk"               "Kraków"              
- "Lodz"                 "Poznań"               "Warsaw"               "Wroclaw"              "Vienna"              
- "Cork"                 "Dublin"               "Galway"               "Bordeaux"             "Lille"               
- "Lyon"                 "Marseille"            "Montpellier"          "Nantes"               "Paris"               
- "Rennes"               "Strasbourg"           "Toulouse"             "Berlin"               "Bremen"              
-[121] "Dortmund"             "Dresden"              "Dusseldorf"           "Essen"                "Frankfurt"           
-[126] "Hamburg"              "Cologne"              "Leipzig"              "Munich"               "Stuttgart"           
-[131] "Bologna"              "Genoa"                "Milan"                "Naples"               "Palermo"             
-[136] "Rome"                 "Turin"                "Den Haag"             "Amsterdam"            "Rotterdam"           
-[141] "Utrecht"              "Barcelona"            "Bilbao"               "Las Palmas"           "Madrid"              
-[146] "Malaga"               "Murcia"               "Palma"                "Seville"              "Valencia"            
-[151] "Zaragoza"             "Geneva"               "Lausanne"             "Zurich"               "Brest"               
-[156] "Grodno"               "Gomel"                "Minsk"                "Riga"                 "Bergen"              
+  "Toronto"       ,      "Edmonton"      ,       "Calgary"    ,          "Vancouver"  ,          "Birmingham" ,         
+  "Blackpool"  ,          "Bournemouth"  ,        "Brighton"        ,     "Bristol"     ,         "Cardiff"         ,    
+  "Coventry"    ,         "Derby"        ,        "Edinburgh"      ,      "Glasgow"      ,        "Hull"             ,   
+  "Leeds"        ,        "Leicester"     ,       "Liverpool"     ,       "Manchester"    ,       "Middlesbrough"     ,  
+  "Newcastle"     ,       "Nottingham"     ,      "Plymouth"     ,        "Portsmouth"     ,      "Preston"            , 
+  "Sheffield"       ,     "Stoke-on-Trent",       "Swansea"         ,     "London"          ,     "Belfast"        ,     
+  "Santo Domingo"  ,      "Guatemala City" ,      "Acapulco"       ,      "Aguascalientes"   ,    "Chihuahua"       ,    
+  "Mexico City"   ,       "Ciudad Juarez" ,       "Nezahualcóyotl",       "Culiacán"   ,          "Ecatepec de Morelos",  
+ "Guadalajara"   ,       "Hermosillo"      ,     "León"          ,       "Mérida"       ,        "Mexicali"    ,        
+  "Monterrey"   ,         "Morelia"         ,     "Naucalpan de Juárez",  "Puebla"       ,        "Querétaro"   ,        
+  "Saltillo"        ,     "San Luis Potosí"  ,    "Tijuana"          ,    "Toluca"        ,       "Zapopan"      ,       
+  "Mendoza"        ,      "Santiago"  ,           "Concepcion"      ,     "Valparaiso"     ,      "Bogotá"        ,      
+  "Cali"          ,       "Medellín"   ,          "Barranquilla"   ,      "Quito"           ,     "Guayaquil"      ,     
+  "Caracas"      ,        "Maracaibo"   ,         "Maracay"       ,       "Valencia"     ,        "Barcelona"       ,    
+  "Ciudad Guayana" ,      "Turmero"      ,        "Lima"         ,        "Brasília"      ,       "Belém"            ,   
+  "Belo Horizonte",       "Curitiba"      ,       "Porto Alegre"     ,    "Recife"         ,      "Rio de Janeiro"    ,  
+  "Salvador"    ,         "São Paulo"      ,      "Campinas"        ,     "Fortaleza"       ,     "Goiânia"            , 
+  "Manaus"     ,          "São Luís"        ,     "Guarulhos"      ,      "Córdoba"     ,         "Rosario"  ,           
+ "Barquisimeto"   ,      "Maturín"           ,   "Buenos Aires"   ,      "Gdansk"        ,       "Kraków"    ,          
+ "Lodz"            ,     "Poznan"     ,          "Warsaw"        ,       "Wroclaw"        ,      "Vienna"     ,         
+ "Cork"          ,       "Dublin"      ,         "Galway"           ,    "Bordeaux"   ,          "Lille"       ,        
+ "Lyon"         ,        "Marseille"    ,        "Montpellier"     ,     "Nantes"      ,         "Paris"      ,         
+ "Rennes"      ,         "Strasbourg"    ,       "Toulouse"       ,      "Berlin"       ,        "Bremen"      ,        
+[121] "Dortmund"             "Dresden"              "Dusseldorf"           "Essen"    ,            "Frankfurt",           
+[126] "Hamburg"              "Cologne"              "Leipzig"              "Munich"    ,           "Stuttgart"           
+[131] "Bologna"              "Genoa"                "Milan"                "Naples"     ,          "Palermo"             
+[136] "Rome"                 "Turin"                "Den Haag"             "Amsterdam"   ,         "Rotterdam"           
+[141] "Utrecht"              "Barcelona"            "Bilbao"               "Las Palmas"   ,        "Madrid"              
+[146] "Malaga"               "Murcia"               "Palma"                "Seville"       ,       "Valencia"            
+[151] "Zaragoza"             "Geneva"               "Lausanne"             "Zurich"         ,      "Brest"              156] "Grodno"               "Gomel"                "Minsk"                "Riga"                 "Bergen"              
 [161] "Oslo"                 "Gothenburg"           "Stockholm"            "Dnipropetrovsk"       "Donetsk"             
 [166] "Kharkiv"              "Kyiv"                 "Lviv"                 "Odesa"                "Zaporozhye"          
 [171] "Athens"               "Thessaloniki"         "Bekasi"               "Depok"                "Pekanbaru"           
