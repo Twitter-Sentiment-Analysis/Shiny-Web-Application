@@ -26,91 +26,62 @@ PrepareTwitter<-function()
   EnsurePackage("plyr")
 }
 
-#PrepareTwitter()
+PrepareTwitter()
 
-# Please see http://cran.r-project.org/web/packages/twitteR/vignettes/twitteR.pdf for more info on this.
+#Function to Authenticate Access to Twitter
 
 Authentication<-function()
 {
-	consumer_key <-"AKJsxNqX2D8uTo9orgjRirvWL"
-	consumer_secret <- "QOKk0ctHhbXNQ5QaipqofrZQzWM92mfkcoP60xe7HJzjSUCz6F"
-	access_token<-"2617540074-5l6gGJhCP8iw9DS7sVD9qsFaUGfWGO9fqlHt5Wg"
-	access_secret <- "VVMfNIzgPEUmCk5QyIWr5A4ZSC2Lxy7CERoUtWs4jAe0l"
+consumer_key <-"AKJsxNqX2D8uTo9orgjRirvWL"
+consumer_secret <- "QOKk0ctHhbXNQ5QaipqofrZQzWM92mfkcoP60xe7HJzjSUCz6F"
+access_token<-"2617540074-5l6gGJhCP8iw9DS7sVD9qsFaUGfWGO9fqlHt5Wg"
+access_secret <- "VVMfNIzgPEUmCk5QyIWr5A4ZSC2Lxy7CERoUtWs4jAe0l"
 
- 	setup_twitter_oauth(consumer_key ,consumer_secret, access_token,  access_secret )
+ setup_twitter_oauth(consumer_key ,consumer_secret, access_token,  access_secret )
  
-	cred <- OAuthFactory$new(consumerKey='AKJsxNqX2D8uTo9orgjRirvWL', consumerSecret='QOKk0ctHhbXNQ5QaipqofrZQzWM92mfkcoP60xe7HJzjSUCz6F',requestURL='https://api.twitter.com/oauth/request_token',accessURL='https://api.twitter.com/oauth/access_token',authURL='https://api.twitter.com/oauth/authorize')
+cred <- OAuthFactory$new(consumerKey='AKJsxNqX2D8uTo9orgjRirvWL', consumerSecret='QOKk0ctHhbXNQ5QaipqofrZQzWM92mfkcoP60xe7HJzjSUCz6F',requestURL='https://api.twitter.com/oauth/request_token',accessURL='https://api.twitter.com/oauth/access_token',authURL='https://api.twitter.com/oauth/authorize')
 
-	cred$handshake(cainfo="cacert.pem")
+cred$handshake(cainfo="cacert.pem")
 }
 
 #Authentication()
 
-# Function to create a data frame from tweets
+#load(cred) # A credential obtained from twitter permitting access to their data - A user will need this to proceed
+# Please see http://cran.r-project.org/web/packages/twitteR/vignettes/twitteR.pdf for more info on this.
 
-shinyServer(function(input,output) {
-      output$tabledata <- renderTable(iris)
+#registerTwitterOAuth(credential)
 
-	
-output$error <- renderText({ 
-          "Server"
-     })    
+shinyServer(function(input, output) {
 
-  pos.words = scan('C:/Users/hp/Documents/positive-words.txt', what='character', comment.char=';')
-  neg.words = scan('C:/Users/hp/Documents/negative-words.txt', what='character', comment.char=';')
-	
-  #Function to load positive and negative words
-  WordDatabase <- function()
-  {
-	pos.words <<- c(pos.words, 'Congrats', 'prizes', 'prize', 'thanks', 'thnx', 'Grt', 'gr8', 'plz', 'trending', 'recovering', 'brainstorm', 'leader')
-	neg.words <<- c(neg.words, 'Fight', 'fighting', 'wtf', 'arrest', 'no', 'not')
-  }
-
-  WordDatabase()
-
-  print("server")
-  
-  # Function to clean tweets, Stanton 2013
-  CleanTweets<-function(tweets)
-  {
-    # Remove redundant spaces
-    tweets <- str_replace_all(tweets," "," ")
-    # Get rid of URLs
-    tweets <- str_replace_all(tweets, "http://t.co/[a-z,A-Z,0-9]*{8}","")
-    # Take out retweet header, there is only one
-    tweets <- str_replace(tweets,"RT @[a-z,A-Z]*: ","")
-    # Get rid of hash
-    tweets <- str_replace_all(tweets,"#","")
-    # Get rid of references to other screennames
-    tweets <- str_replace_all(tweets,"@[a-z,A-Z]*","")
-
-    sample = tweets$text
-    return(sample)
-	
-
-    #return(tweets)
-    
-  }
-  
   #Search tweets and create a data frame -Stanton (2013)
+	# Clean the tweets
   TweetFrame<-function(searchTerm, maxTweets)
   {
-    twtList<-searchTwitter(searchTerm,n=maxTweets,cainfo="cacert.pem",lang="en")
-    #for (i in 2:length(dates)) {
-    #tweets <- c(tweets, searchTwitter(searchTerm, since=dates[i-1], until=dates[i], n=maxTweets))
-    #}
+      twtList<-searchTwitter(searchTerm,n=maxTweets,lang="en")
+      #for (i in 2:length(dates)) {
+      #tweets <- c(tweets, searchTwitter(searchTerm, since=dates[i-1], until=dates[i], n=maxTweets))
+      #}
+ 
+      df<- do.call("rbind",lapply(twtList,as.data.frame))
+      #removes emoticons
+	df$text <- sapply(df$text,function(row) iconv(row, "latin1", "ASCII", sub=""))
+	df$text = gsub("(f|ht)tp(s?)://(.*)[.][a-z]+", "", df$text)
+      return (df$text)
+   }
 
-    df<- do.call("rbind",lapply(twtList,as.data.frame))
-    #removes emoticons
-    df$text <- sapply(df$text,function(row) iconv(row, "latin1", "ASCII", sub=""))
-    return df
+	# Function to create a data frame from tweets, Stanton 2013
 
-    #return(twtList1)
-    
-  }
-  
-  score.sentiment = function(sentences, pos.words, neg.words, .progress='none')
-  {
+	pos.words=scan('G:/Mita/Twitter Sentiment Analysis/positive-words.txt', what='character',comment.char=';')
+	neg.words=scan('G:/Mita/Twitter Sentiment Analysis/negative-words.txt', what='character',comment.char=';')
+
+	wordDatabase<-function()
+	{
+		pos.words<<-c(pos.words, 'Congrats', 'prizes', 'prize', 'thanks', 'thnx', 'Grt', 'gr8', 'plz', 'trending', 'recovering', 'brainstorm', 'leader')
+		neg.words<<-c(neg.words, 'Fight', 'fighting', 'wtf', 'arrest', 'no', 'not')
+	}
+
+   score.sentiment <- function(sentences, pos.words, neg.words, .progress='none')
+    {
 	require(plyr)
 	require(stringr)
 	list=lapply(sentences, function(sentence, pos.words, neg.words)
@@ -145,65 +116,78 @@ output$error <- renderText({
 	return(list_df)
     }
 
-
-	sentimentAnalyzer <- function()
+ 	library(reshape)
+	sentimentAnalyser<-function(result)
 	{
+		#Creating a copy of result data frame
+		test1=result[[1]]
+		test2=result[[2]]
+		test3=result[[3]]
 
-	#MOVE TO A BETTER LOCATION!!!!!!!!!!!!!!
+		#Creating three different data frames for Score, Positive and Negative
+		#Removing text column from data frame
+		test1$text=NULL
+		test2$text=NULL
+		test3$text=NULL
+		#Storing the first row(Containing the sentiment scores) in variable q
+		q1=test1[1,]
+		q2=test2[1,]
+		q3=test3[1,]
+		qq1=melt(q1, ,var='Score')
+		qq2=melt(q2, ,var='Positive')
+		qq3=melt(q3, ,var='Negative') 
+		qq1['Score'] = NULL
+		qq2['Positive'] = NULL
+		qq3['Negative'] = NULL
+		#Creating data frame
+		table1 = data.frame(Text=result[[1]]$text, Score=qq1)
+		table2 = data.frame(Text=result[[2]]$text, Score=qq2)
+		table3 = data.frame(Text=result[[3]]$text, Score=qq3)
 	
-	#Call the required functions
+		#Merging three data frames into one
+		table_final=data.frame(Text=table1$Text, Positive=table2$value, Negative=table3$value, Score=table1$value)
+		return(table_final)
+     }
+
+	percentage<-function(table_final)
+	{
+		#Positive Percentage
+
+		#Renaming
+		posSc=table_final$Positive
+		negSc=table_final$Negative
+
+		#Adding column
+		table_final$PosPercent = posSc/ (posSc+negSc)
+
+		#Replacing Nan with zero
+		pp = table_final$PosPercent
+		pp[is.nan(pp)] <- 0
+		table_final$PosPercent = pp*100
+
+		#Negative Percentage
+
+		#Adding column
+		table_final$NegPercent = negSc/ (posSc+negSc)
+
+		#Replacing Nan with zero
+		nn = table_final$NegPercent
+		nn[is.nan(nn)] <- 0
+		table_final$NegPercent = nn*100
+
+		return(table_final)
+	}
+
+	wordDatabase()
 	tweets<-reactive({tweets<-TweetFrame(input$searchTerm, input$maxTweets)})
-  	sample<-reactive({sample<-CleanTweets( tweets() )})
 
-	print("sample")
-	# Apply the function
-	result = score.sentiment(sample(), pos.words, neg.words)
-	print("result")
-	library(reshape)
-	#Creating a copy of result data frame
-	test1=result[[1]]
-	test2=result[[2]]
-	test3=result[[3]]
-
-	#Creating three different data frames for Score, Positive and Negative
-	#Removing text column from data frame	
-	test1$text=NULL	
-	test2$text=NULL
-	test3$text=NULL
-	#Storing the first row(Containing the sentiment scores) in variable q
-	q1=test1[1,]
-	q2=test2[1,]
-	q3=test3[1,]	
-	qq1=melt(q1, ,var='Score')
-	qq2=melt(q2, ,var='Positive')
-	qq3=melt(q3, ,var='Negative') 
-	qq1['Score'] = NULL
-	qq2['Positive'] = NULL
-	qq3['Negative'] = NULL
-	#Creating data frame
-	table1 = data.frame(Text=result[[1]]$text, Score=qq1)
-	table2 = data.frame(Text=result[[2]]$text, Score=qq2)
-	table3 = data.frame(Text=result[[3]]$text, Score=qq3)
-
-	#Merging three data frames into one
-	table_final=data.frame(Text=table1$Text, Score=table1$value, Positive=table2$value, Negative=table3$value)
-
-	return table_final	
-	}   
-
-#CONTINUE!!!!!!!!!!!   
+	result<-reactive({result<-score.sentiment(tweets(), pos.words, neg.words, .progress='none')})
+	
+	table_final<-reactive({table_final<-sentimentAnalyser(  result() )})
+	table_final_percentage<-reactive({table_final_percentage<-percentage(  table_final() )})
+	
+	output$tabledata<-renderTable(table_final_percentage())	
 
 
-   #table_final = sentimentAnalyzer()
-  table_final <- reactive({table_final<-sentimentAnalyzer()})
-
-#entityscores<-reactive({entityscores<-sentimentalanalysis(entity1()$text,entity2()$text,input$entity1,input$entity2)})
-
-
-   #output$tabledata <- renderTable({
-#	head(table_final(),20)
-#	})
-
-    }
-  )
+})
 
