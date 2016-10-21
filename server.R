@@ -206,9 +206,6 @@ shinyServer(function(input, output) {
 
 	text_word<-reactive({text_word<-wordclouds( tweets() )})
 	
-	#output$word <- renderPlot({ wordcloud(text_word(),random.order=F,max.words=80, col=rainbow(50), scale=c(4,0.5)) })
-	output$wordcloud <- renderImage({
-    	list(src=make_cloud(), alt="Image being generated!", height=600)
-  	})
-
+	output$word <- renderPlot({ wordcloud(text_word(),random.order=F,max.words=80, col=rainbow(50), scale=c(4,0.5)) })
+	
 })
