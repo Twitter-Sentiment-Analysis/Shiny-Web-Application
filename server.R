@@ -188,6 +188,27 @@ shinyServer(function(input, output) {
 	
 	output$tabledata<-renderTable(table_final_percentage())	
 
+#WORDCLOUD
+	wordclouds<-function(text)
+	{
+		library(tm)
+		library(wordcloud)
+		corpus <- Corpus(VectorSource(text))
+		#clean text
+		clean_text <- tm_map(corpus, removePunctuation)
+		clean_text <- tm_map(clean_text, content_transformation)
+		clean_text <- tm_map(clean_text, content_transformer(tolower))
+		clean_text <- tm_map(clean_text, removeWords, stopwords("english"))
+		clean_text <- tm_map(clean_text, removeNumbers)
+		clean_text <- tm_map(clean_text, stripWhitespace)
+		return (clean_text)
+	}
+
+	text_word<-reactive({text_word<-wordclouds( tweets() )})
+	
+	#output$word <- renderPlot({ wordcloud(text_word(),random.order=F,max.words=80, col=rainbow(50), scale=c(4,0.5)) })
+	output$wordcloud <- renderImage({
+    	list(src=make_cloud(), alt="Image being generated!", height=600)
+  	})
 
 })
-
