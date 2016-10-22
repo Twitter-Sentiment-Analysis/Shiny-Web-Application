@@ -85,29 +85,29 @@ selectInput("trendingTable","Choose location to extract trending tweets",c("Worl
 "Vienna"      ,         "Vietnam"   ,           "Virginia Beach"  ,     "Vladivostok"  ,        "Volgograd"      ,      "Voronezh"    ,         "Warsaw"  ,            
  "Washington"  ,         "Winnipeg",  "Wroclaw"      ,        "Yekaterinburg",        "Yokohama"  ,  "Yongin",              
 "Zamboanga City" ,      "Zapopan",              "Zaporozhye"       ,    "Zaragoza"       ,      "Zurich"  ), selected = "Worldwide", selectize = FALSE),
-            HTML("<div> The table below shows the top 20 trending 
-	hashtags on Twitter of the location you have chosen. These are the hot topics today! </div>"),
-   verbatimTextOutput("random"),plotOutput("andom"),
+            HTML("<div><h3> The table below shows the top 20 trending 
+	hashtags on Twitter of the location you have chosen. These are the hot topics today! </h3></div>"),
+   tableOutput("trendtable"),
 			HTML
                ("<div> </div>")),
 
 
-      tabPanel("WordCloud",HTML("<div>Most used words associated with the hashthag</div>"),verbatimTextOutput("wordcloud"),plotOutput("word"),
+      tabPanel("WordCloud",HTML("<div><h3>Most used words associated with the hashtag</h3></div>"),plotOutput("word"),
                HTML
-               ("<div> A word cloud is a visual representation of text data, typically used to depict keyword metadata (tags) on websites, or to visualize free form text.
+               ("<div><h4> A word cloud is a visual representation of text data, typically used to depict keyword metadata (tags) on websites, or to visualize free form text.
                 This format is useful for quickly perceiving the most prominent terms and for locating a term alphabetically to determine its relative prominence.
-			</div>")),
+			</h4></div>")),
       
       
-      tabPanel("Histogram",plotOutput("histPos"), verbatimTextOutput("histo"),plotOutput("histNeg"), plotOutput("histScore"),
-               HTML
-               ("<div> Histograms graphically depict the positivity or negativity of peoples' opinion about of the hahtag
-			</div>")),
+      tabPanel("Histogram",HTML
+               ("<div><h3> Histograms graphically depict the positivity or negativity of peoples' opinion about of the hashtag
+			</h3></div>"), plotOutput("histPos"), plotOutput("histNeg"), plotOutput("histScore")
+               ),
       
       
-      tabPanel("Pie Chart",HTML("<div>Depicting sentiment on a scale of 5</div>"),verbatimTextOutput("poisstest"), plotOutput("piechart"),HTML
-               ("<div> A pie chart is a circular statistical graphic, which is divided into slices to illustrate the sentiment of the hashtag. In a pie chart, the arc length 
-			of each slice (and consequently its central angle and area), is proportional to the quantity it represents.</div>")
+      tabPanel("Pie Chart",HTML("<div><h3>Depicting sentiment on a scale of 5</h3></div>"), plotOutput("piechart"),HTML
+               ("<div><h4> A pie chart is a circular statistical graphic, which is divided into slices to illustrate the sentiment of the hashtag. In a pie chart, the arc length 
+			of each slice (and consequently its central angle and area), is proportional to the quantity it represents.</h4></div>")
                 
               ),
       
