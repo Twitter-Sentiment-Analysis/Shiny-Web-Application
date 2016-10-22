@@ -33,6 +33,7 @@ PrepareTwitter()
 Authentication<-function()
 {
 consumer_key <-"AKJsxNqX2D8uTo9orgjRirvWL"
+
 consumer_secret <- "QOKk0ctHhbXNQ5QaipqofrZQzWM92mfkcoP60xe7HJzjSUCz6F"
 access_token<-"2617540074-5l6gGJhCP8iw9DS7sVD9qsFaUGfWGO9fqlHt5Wg"
 access_secret <- "VVMfNIzgPEUmCk5QyIWr5A4ZSC2Lxy7CERoUtWs4jAe0l"
@@ -53,6 +54,8 @@ cred$handshake(cainfo="cacert.pem")
 
 shinyServer(function(input, output) {
 
+
+	#TABLE
   #Search tweets and create a data frame -Stanton (2013)
 	# Clean the tweets
   TweetFrame<-function(searchTerm, maxTweets)
@@ -188,24 +191,62 @@ shinyServer(function(input, output) {
 	
 	output$tabledata<-renderTable(table_final_percentage())	
 
-#WORDCLOUD
+	#WORDCLOUD
+
 	wordclouds<-function(text)
 	{
 		library(tm)
-		library(wordcloud)
-		corpus <- Corpus(VectorSource(text))
+		corpus<-Corpus(VectorSource(text))
+		#corpus
+		#inspect(corpus[1])
 		#clean text
 		clean_text <- tm_map(corpus, removePunctuation)
-		clean_text <- tm_map(clean_text, content_transformation)
+		#clean_text <- tm_map(clean_text, content_transformation)
 		clean_text <- tm_map(clean_text, content_transformer(tolower))
 		clean_text <- tm_map(clean_text, removeWords, stopwords("english"))
 		clean_text <- tm_map(clean_text, removeNumbers)
 		clean_text <- tm_map(clean_text, stripWhitespace)
-		return (clean_text)
+		return(clean_text)
 	}
 
-	text_word<-reactive({text_word<-wordclouds( tweets() )})
+	text_word<-reactive({text_word<-wordclouds(  tweets() ) })
+	output$word<-renderPlot({wordcloud(text_word(), random.order=F,max.words=80, col=rainbow(100), scale=c(5,1.5))		
+				})
 	
-	output$word <- renderPlot({ wordcloud(text_word(),random.order=F,max.words=80, col=rainbow(50), scale=c(4,0.5)) })
+	#HISTOGRAM
+
+	output$histPos<- renderPlot({hist(table_final()$Positive, col=rainbow(10), main = "Histogram of Positive Sentiment", xlab = "Positive Score") })
+	output$histNeg<- renderPlot({hist(table_final()$Negative, col=rainbow(10), main = "Histogram of Negative Sentiment", xlab = "Negative Score") })
+	output$histScore<- renderPlot({hist(table_final()$Score, col=rainbow(10), main = "Histogram of Score", xlab = "Overall Score")})
 	
-})
+	#PIE CHART
+	
+	slices <- reactive({c(sum(table_final()$Positive), sum(table_final()$Negative)) })
+	labels <- c("Positive", "Negative")
+	library(plotrix)
+	#pie(slices(), labels = labels, col=rainbow(length(labels)), main="Sentiment Analysis")
+	output$piechart<-renderPlot({pie3D(slices(), labels = labels, col=rainbow(length(labels)),explode=0.00, main="Sentiment Analysis") })
+	
+	#TOP TRENDING TWEETS
+
+	toptrends<-function(place)
+	{
+		a_trends = availableTrendLocations()
+		woeid = a_trends[which(a_trends$name==place),3]
+		trend = getTrends(woeid)
+		trends = trend[1:2]
+
+		#To clean data and remove Non English words: (not required)
+		dat <- cbind(trends$name)
+		dat2 <- unlist(strsplit(dat, split=", "))
+		dat3 <- grep("dat2", iconv(dat2, "latin1", "ASCII", sub="dat2"))
+		dat4 <- dat2[-dat3]
+		#dat5 <- trends[,which(trends$name==dat4)]
+		return(dat4)
+	}
+
+	trend_table<-reactive({trend_table<-toptrends(  input$trendingTable ) })
+	output$trendtable<-renderTable(trend_table() )
+
+}) #shiny server
+
