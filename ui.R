@@ -122,7 +122,7 @@ shinyUI(pageWithSidebar(
       
       
       tabPanel("Top tweeters",HTML
-               ("<div> Top 15 tweeters of hastag</div>"),plotOutput("entity1wcplot")),
+               ("<div><h3> Top tweeters of hastag</h3></div>"),plotOutput("tweetersplot"), tableOutput("tweeterstable")),
       
       tabPanel("Timeline plot",plotOutput("timelineTable"),HTML
                ("<div> This plot shows timeline of tweets of upto 7 recent days for frequency of tweets hour wise</div>"))
