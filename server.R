@@ -259,7 +259,7 @@ shinyServer(function(input, output) {
 	#par(las=2) # make label text perpendicular to axis
 	#par(mar=c(5,8,4,2)) # increase y-axis margin.
 	output$tweetersplot<-renderPlot ( barplot(head(d()$Tweets, 20), names=head(d()$User, 20), horiz=F, las=2, main="Top Tweeters", col=1) )
-	output$tweeterstable<-renderTable(d())
+	output$tweeterstable<-renderTable(head(d(), 20))
 	
 	
 }) #shiny server
