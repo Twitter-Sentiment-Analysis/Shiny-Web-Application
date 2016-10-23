@@ -1,6 +1,6 @@
 library(shiny)
 
-shinyUI(fluidPage(
+shinyUI(pageWithSidebar(
   
   headerPanel("Twitter Sentiment Analysis"),
   
@@ -8,24 +8,29 @@ shinyUI(fluidPage(
   
   sidebarPanel(
     
-      
-    selectInput("category", "Enter category for analysis", c("Movie", "Product", "Service", "People"), selected="Select", selectize=TRUE
-              ),
-    textInput ("searchTerm","Enter hashtag to be searched with '#'",  "#"),
-    sliderInput("maxTweets","Number of recent tweets to use for analysis",min=5,max=1000,value=500), # The max can, of course, be increased
-    sliderInput("noOfDays","No of recent days upto which tweets are retrieved",min=1,max=7,value=7,step=1), 
-    submitButton(text="Analyse")    
+    selectInput("category","Enter category for analysis", c("Movie","Product","Service","People"),selected="Movie", selectize=TRUE
+               ),
+    textInput("searchTerm", "Enter data to be searched with '#'", "#"),
+    sliderInput("maxTweets","Number of recent tweets to use for analysis:",min=5,max=1000,value=500), 
+	#sliderInput("noOfDays","Number of recent days upto which tweets are retrieved:",min=1,max=7,value=7)
+    submitButton(text="Analyse")
+    
   ),
   
   mainPanel(
+      
+
     tabsetPanel(
       
-	tabPanel("Top Trending Tweets Today",	
-selectInput("trendingTable","Choose location to extract trending tweets",c("Worldwide" ,  "Abu Dhabi" ,"Acapulco" , "Accra" , "Adana" , "Adela", "Aguascalientes" , 
-"Ahmedabad" ,  "Ahsa" , "Albuquerque" , "Alexandria" , "Algeria" , "Algiers" , "Amman" , "Amritsar" , "Amsterdam",  "Ankara" , "Ansan" , "Antalya" , "Antipolo" , 
-"Argentina" ,  "Athens" ,  "Atlanta" ,             "Auckland" ,            "Austin" ,              "Australia" ,    "Austria"  , "Bahrain"     , "Baltimore"  ,         
+	 tabPanel("Top Trending Tweets Today",HTML("<div>Top Trending Tweets according to location</div>"),
+	
+	 selectInput("trendingTable","Choose location to extract trending tweets",c("Worldwide" ,  "Abu Dhabi" ,"Acapulco" , "Accra" , 
+										    "Adana" , "Adela", "Aguascalientes" , "Ahmedabad" ,         
+   "Ahsa" , "Albuquerque" , "Alexandria" , "Algeria" , "Algiers" , "Amman" , "Amritsar" , "Amsterdam",  "Ankara" , "Ansan" ,
+	"Antalya" , "Antipolo" , "Argentina" ,  "Athens" ,  
+  "Atlanta" ,             "Auckland" ,            "Austin" ,              "Australia" ,           "Austria"  ,            "Bahrain"     ,         "Baltimore"  ,         
   "Bandung"   ,           "Bangalore" ,           "Bangkok",              "Barcelona" ,           "Barcelona",            "Barquisimeto",         "Barranquilla"  ,      
-  "Baton Rouge" ,         "Bekasi"    ,           "Belarus",            "Belfast"  ,            "Belgium"     ,         "Belo Horizonte",      
+  "Baton Rouge" ,         "Bekasi"    ,           "Belarus",              "Belem"     ,           "Belfast"  ,            "Belgium"     ,         "Belo Horizonte",      
   "Benin City"  ,         "Bergen"    ,           "Berlin" ,              "Bhopal"    ,           "Bilbao"   ,            "Birmingham"  ,         "Birmingham"    ,      
   "Blackpool"   ,         "Bogota"    ,           "Bologna",              "Bordeaux"  ,           "Boston"   ,            "Bournemouth" ,         "Brasilia"      ,      
   "Brazil"      ,         "Bremen"    ,           "Brest"  ,              "Brighton"  ,           "Brisbane" ,            "Bristol"     ,         "Bucheon"       ,      
@@ -35,8 +40,8 @@ selectInput("trendingTable","Choose location to extract trending tweets",c("Worl
   "Chicago"     ,         "Chihuahua" ,           "Chile"    ,            "Cincinnati",           "Ciudad Guayana" ,      "Ciudad Juarez",        "Cleveland" ,          
   "Cologne"     ,         "Colombia"  ,           "Colorado Springs",     "Columbus"  ,           "Concepcion" ,          "Cordoba"      ,        "Cork"      ,          
   "Coventry"    ,         "Culiacan"  ,           "Curitiba"    ,         "Da Nang"   ,           "Daegu"      ,          "Daejeon"      ,        "Dallas-Ft. Worth" ,   
- "Dammam"  , "Darwin" ,"Davao City", "Delhi", "Den Haag" , "Denmark" ,"Denver" ,  "Depok" , "Derby" , "Detroit" , "Diyarbakir" , "Dnipropetrovsk" ,"Dominican Republic",
-"Donetsk", "Dortmund"  ,           "Dresden" ,             "Dubai"         ,       "Dublin"      ,         "Durban" , "Dusseldorf"    ,       "Ecatepec de Morelos", 
+ "Dammam"  , "Darwin" ,"Davao City", "Delhi", "Den Haag" , "Denmark" ,"Denver" ,  "Depok" , "Derby" , "Detroit" , "Diyarbakir" , "Dnipropetrovsk" ,"Dominican Republic","Donetsk",
+ "Dortmund"  ,           "Dresden" ,             "Dubai"         ,       "Dublin"      ,         "Durban"       ,        "Dusseldorf"    ,       "Ecatepec de Morelos", 
  "Ecuador"       ,       "Edinburgh" ,           "Edmonton"      ,       "Egypt"       ,         "El Paso"      ,        "Eskisehir"     ,       "Essen"    ,           
  "Faisalabad"    ,       "Fortaleza"  ,          "France"        ,       "Frankfurt"   ,         "Fresno"       ,        "Fukuoka"       ,       "Galway"   ,           
  "Gaziantep"    ,        "Gdansk"      ,         "Geneva"       ,        "Genoa"       ,         "Germany"      ,        "Ghana"         ,       "Giza"     ,           
@@ -52,7 +57,7 @@ selectInput("trendingTable","Choose location to extract trending tweets",c("Worl
  "Kitakyushu"   ,        "Klang"         ,       "Kobe"         ,        "Kolkata"      ,        "Konya"     ,           "Korea"         ,       "Krakow"         ,     
  "Krasnodar"    ,        "Krasnoyarsk"   ,       "Kuala Lumpur" ,        "Kumamoto"    ,         "Kumasi"    ,           "Kuwait"        ,       "Kyiv"           ,     
 "Kyoto" ,               "Lagos"    ,            "Lahore"       ,        "Las Palmas",           "Las Vegas"   ,         "Latvia" ,              "Lausanne"       ,     
-"Lebanon" ,              "Leeds"   ,             "Leicester"   ,      "Leipzig" ,             "Leon"        ,         "Lille"  ,              "Lima" ,               
+"Lebanon" ,              "Leeds"   ,             "Leicester",            "Leipzig" ,             "Leon"        ,         "Lille"  ,              "Lima" ,               
 "Liverpool" ,           "Lodz"     ,            "London"      ,         "Long Beach" ,          "Los Angeles"  ,        "Louisville"       ,    "Lucknow"  ,           
 "Lviv"       ,          "Lyon"          ,       "Madrid"       ,        "Makassar"    ,         "Makati"      ,         "Malaga"          ,     "Malaysia"  ,          
  "Manaus"     ,          "Manchester"  ,         "Manila"       ,        "Maracaibo"   ,         "Maracay"   ,           "Marseille"     ,       "Maturin"   ,   
@@ -85,7 +90,7 @@ selectInput("trendingTable","Choose location to extract trending tweets",c("Worl
 "Vienna"      ,         "Vietnam"   ,           "Virginia Beach"  ,     "Vladivostok"  ,        "Volgograd"      ,      "Voronezh"    ,         "Warsaw"  ,            
  "Washington"  ,         "Winnipeg",  "Wroclaw"      ,        "Yekaterinburg",        "Yokohama"  ,  "Yongin",              
 "Zamboanga City" ,      "Zapopan",              "Zaporozhye"       ,    "Zaragoza"       ,      "Zurich"  ), selected = "Worldwide", selectize = FALSE),
-            HTML("<div><h3> The table below shows the top 20 trending 
+    HTML("<div><h3> The table below shows the top trending 
 	hashtags on Twitter of the location you have chosen. These are the hot topics today! </h3></div>"),
    tableOutput("trendtable"),
 			HTML
@@ -115,14 +120,13 @@ selectInput("trendingTable","Choose location to extract trending tweets",c("Worl
 			HTML ("<div><h4> The table depicts the sentiment (positive, negative or neutral) of the tweets 
 				associated with the search hashtag by showing the score for each type of sentiment. </h4></div>")),
       
-      #Output from tab 5 - Word clouds - with some html tags
       
-      tabPanel("Top Tweeters",HTML("<div> Top 15 Tweeters of hashtag </div>"),plotOutput("tweetersplot")),
+      tabPanel("Top tweeters",HTML
+               ("<div> Top 15 tweeters of hastag</div>"),plotOutput("entity1wcplot")),
       
-      #Output from tabs 6 and 7, the raw tweets
-      tabPanel("Timeline plot",tableOutput("tableentity1"), HTML("<div> Shows timeline of tweets of upto 7 recents days for frequency of tweets hourwise
-			</div>")  )    
-    )
-  )
+      tabPanel("Timeline plot",plotOutput("timelineTable"),HTML
+               ("<div> This plot shows timeline of tweets of upto 7 recent days for frequency of tweets hour wise</div>"))
+    )#end of tabset panel
+  )#end of main panel
   
-))
+))#end of shinyUI
