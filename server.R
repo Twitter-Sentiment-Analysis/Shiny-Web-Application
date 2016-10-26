@@ -311,6 +311,6 @@ shinyServer(function(input, output) {
 
 	p<- reactive ({ p = ggplot(dat2(), aes(x = tag, y = freq)) + geom_bar(stat="identity", fill = "blue")
 	p + coord_flip() + labs(title = "Hashtag frequencies in the tweets of the tweeter") })
-	output$tophastagsplot <- renderPlot ({ p() })	
+	output$tophashtagsplot <- renderPlot ({ p() })	
 
 }) #shiny server
