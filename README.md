@@ -17,4 +17,4 @@ Tabs:
 4. Pie Chart : pie chart  
 5. Table of tweets : table  
 6. Top Tweeters of Hashtag : barplot  
-7. Top Hashtags of user : ggpot  
+7. Top Hashtags of user : ggplot  
