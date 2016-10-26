@@ -57,9 +57,6 @@ shinyServer(function(input, output) {
   # Clean the tweets
    TweetFrame<-function(twtList)
   {
-      #for (i in 2:length(dates)) {
-      #tweets <- c(tweets, searchTwitter(searchTerm, since=dates[i-1], until=dates[i], n=maxTweets))
-      #}
  
       df<- do.call("rbind",lapply(twtList,as.data.frame))
       #removes emoticons
@@ -76,7 +73,7 @@ shinyServer(function(input, output) {
 
 	wordDatabase<-function()
 	{
-		pos.words<<-c(pos.words, 'Congrats', 'prizes', 'prize', 'thanks', 'thnx', 'Grt', 'gr8', 'plz', 'trending', 'recovering', 'brainstorm', 'leader')
+		pos.words<<-c(pos.words, 'Congrats', 'prizes', 'prize', 'thanks', 'thnx', 'Grt', 'gr8', 'plz', 'trending', 'recovering', 'brainstorm', 'leader', 'power', 'powerful', 'latest')
 		neg.words<<-c(neg.words, 'Fight', 'fighting', 'wtf', 'arrest', 'no', 'not')
 	}
 
@@ -181,6 +178,14 @@ shinyServer(function(input, output) {
 	}
 	
 	wordDatabase()
+	
+	#twtList <- list()
+	#dates<-reactive({ dates<-as.Date(as.Date(Sys.Date()-input$noOfDays):as.Date(Sys.Date()), origin="1970-01-01") }) #general view 
+	#twtList<-reactive({ twtList <- searchTwitter(input$searchTerm, since=dates()[1], until=dates()[2], n=input$maxTweets) })
+	#for (i in 3:length(dates())) 
+	#{
+  	#	twtList() <- c(twtList(), searchTwitter(input$searchTerm, since=dates()[i-1], until=dates()[i], n=input$maxTweets))
+	#}
 	twtList<-reactive({twtList<-searchTwitter(input$searchTerm, n=input$maxTweets, lang="en") })
 	tweets<-reactive({tweets<-TweetFrame(twtList() )})
 
@@ -256,11 +261,56 @@ shinyServer(function(input, output) {
 	# Plot the table above for the top 20
 
 	d<-reactive({d<-toptweeters(  twtList() ) })
-	#par(las=2) # make label text perpendicular to axis
-	#par(mar=c(5,8,4,2)) # increase y-axis margin.
 	output$tweetersplot<-renderPlot ( barplot(head(d()$Tweets, 20), names=head(d()$User, 20), horiz=F, las=2, main="Top Tweeters", col=1) )
-	output$tweeterstable<-renderTable(head(d(), 20))
+	output$tweeterstable<-renderTable(head(d(),20))
 	
+	#TIMELINE PLOT //Ensure Time-7 gives right date. Tricky at beginning of month
 	
-}) #shiny server
+	# Convert the list to a data frame
+	#df<-reactive({ df <- twListToDF(twtList()) })
+ 	#df() <- unique(df())
 
+	# To ensure accuracy, there should be no more than 1500 tweets in a single day	.
+	# If there are 1500 on any single day, then you're truncating that day's 
+	#tweets, and you'll need to try to get ROAuth (below) working.
+	#df()$date <- format(df()$created, format="%Y-%m-%d")
+	#table(df()$date)
+
+	# Plot the frequency of tweets over time in two hour windows
+	# Modified from http://michaelbommarito.com/2011/03/12/a-quick-look-at-march11-saudi-tweets/
+	#minutes <- 60
+	#output$timelinePlot<-renderPlot({ ggplot(data=df(), aes(x=created)) + 
+  	#geom_histogram(aes(fill=..count..), binwidth=60*minutes) + 
+  	#scale_x_datetime("Date") + 
+  	#scale_y_continuous("Frequency") })
+
+	
+	#TOP 10 HASHTAGS OF USER
+
+	tw1 <- reactive({ tw1 = userTimeline(input$user, n = 3200) })
+	tw <- reactive({ tw = twListToDF(tw1()) })
+	vec1<-reactive ({ vec1 = tw()$text })
+ 
+	extract.hashes = function(vec){
+ 	
+		hash.pattern = "#[[:alpha:]]+"
+		have.hash = grep(x = vec, pattern = hash.pattern)
+ 
+		hash.matches = gregexpr(pattern = hash.pattern,
+                        text = vec[have.hash])
+		extracted.hash = regmatches(x = vec[have.hash], m = hash.matches)
+ 
+		df = data.frame(table(tolower(unlist(extracted.hash))))
+		colnames(df) = c("tag","freq")
+		df = df[order(df$freq,decreasing = TRUE),]
+		return(df)
+	}
+ 
+	dat<-reactive({ dat = head(extract.hashes(vec1()),50) })
+	dat2<- reactive ({ dat2 = transform(dat(),tag = reorder(tag,freq)) })
+
+	p<- reactive ({ p = ggplot(dat2(), aes(x = tag, y = freq)) + geom_bar(stat="identity", fill = "blue")
+	p + coord_flip() + labs(title = "Hashtag frequencies in the tweets of the tweeter") })
+	output$tophastagsplot <- renderPlot ({ p() })	
+
+}) #shiny server
