@@ -1,3 +1,7 @@
+System Requirements:  
+Installation of R  
+Twitter Authentication to access API  
+
 # Front-end code for Twitter Sentiment Analysis
 
 ui.R: Contains code for the deign of the front-end  
