@@ -33,6 +33,7 @@ PrepareTwitter()
 Authentication<-function()
 {
 consumer_key <-"AKJsxNqX2D8uTo9orgjRirvWL"
+
 consumer_secret <- "QOKk0ctHhbXNQ5QaipqofrZQzWM92mfkcoP60xe7HJzjSUCz6F"
 access_token<-"2617540074-5l6gGJhCP8iw9DS7sVD9qsFaUGfWGO9fqlHt5Wg"
 access_secret <- "VVMfNIzgPEUmCk5QyIWr5A4ZSC2Lxy7CERoUtWs4jAe0l"
@@ -52,11 +53,16 @@ cred$handshake(cainfo="cacert.pem")
 #registerTwitterOAuth(credential)
 
 shinyServer(function(input, output) {
-  
+
+
+	#TABLE
   #Search tweets and create a data frame -Stanton (2013)
-  # Clean the tweets
-   TweetFrame<-function(twtList)
+	# Clean the tweets
+  TweetFrame<-function(twtList)
   {
+      #for (i in 2:length(dates)) {
+      #tweets <- c(tweets, searchTwitter(searchTerm, since=dates[i-1], until=dates[i], n=maxTweets))
+      #}
  
       df<- do.call("rbind",lapply(twtList,as.data.frame))
       #removes emoticons
@@ -65,15 +71,14 @@ shinyServer(function(input, output) {
       return (df$text)
    }
 
-
 	# Function to create a data frame from tweets, Stanton 2013
 
-	pos.words = scan('C:/Users/hp/Documents/positive-words.txt', what='character', comment.char=';')
-	neg.words = scan('C:/Users/hp/Documents/negative-words.txt', what='character', comment.char=';')
+	pos.words=scan('G:/Mita/Twitter Sentiment Analysis/positive-words.txt', what='character',comment.char=';')
+	neg.words=scan('G:/Mita/Twitter Sentiment Analysis/negative-words.txt', what='character',comment.char=';')
 
 	wordDatabase<-function()
 	{
-		pos.words<<-c(pos.words, 'Congrats', 'prizes', 'prize', 'thanks', 'thnx', 'Grt', 'gr8', 'plz', 'trending', 'recovering', 'brainstorm', 'leader', 'power', 'powerful', 'latest')
+		pos.words<<-c(pos.words, 'Congrats', 'prizes', 'prize', 'thanks', 'thnx', 'Grt', 'gr8', 'plz', 'trending', 'recovering', 'brainstorm', 'leader')
 		neg.words<<-c(neg.words, 'Fight', 'fighting', 'wtf', 'arrest', 'no', 'not')
 	}
 
@@ -112,8 +117,6 @@ shinyServer(function(input, output) {
 	list_df=list(scores.df, positive.df, negative.df)
 	return(list_df)
     }
-
-	#TABLE DATA	
 
  	library(reshape)
 	sentimentAnalyser<-function(result)
@@ -176,16 +179,16 @@ shinyServer(function(input, output) {
 
 		return(table_final)
 	}
-	
+
 	wordDatabase()
+
+	#dates <- reactive({ as.Date(as.Date(Sys.Date()-input$noOfDays):as.Date(Sys.Date()), origin="1970-01-01") }) #SUGGESTION: Modify these dates of upto 7 days before running this program 
+	#twtList<-reactive({twtList<-searchTwitter(input$searchTerm, n=input$maxTweets, since=dates()[1], until=dates()[2], lang="en") })
 	
-	#twtList <- list()
-	#dates<-reactive({ dates<-as.Date(as.Date(Sys.Date()-input$noOfDays):as.Date(Sys.Date()), origin="1970-01-01") }) #general view 
-	#twtList<-reactive({ twtList <- searchTwitter(input$searchTerm, since=dates()[1], until=dates()[2], n=input$maxTweets) })
-	#for (i in 3:length(dates())) 
-	#{
-  	#	twtList() <- c(twtList(), searchTwitter(input$searchTerm, since=dates()[i-1], until=dates()[i], n=input$maxTweets))
-	#}
+	#for (i in 3:length(dates())) {
+  	#	twtList()<- c(twtList(), searchTwitter(input$searchTerm, n=input$maxTweets, since=dates()[i-1], until=dates()[i], lang="en"))
+	#		}
+	
 	twtList<-reactive({twtList<-searchTwitter(input$searchTerm, n=input$maxTweets, lang="en") })
 	tweets<-reactive({tweets<-TweetFrame(twtList() )})
 
@@ -193,15 +196,61 @@ shinyServer(function(input, output) {
 	
 	table_final<-reactive({table_final<-sentimentAnalyser(  result() )})
 	table_final_percentage<-reactive({table_final_percentage<-percentage(  table_final() )})
-
-	output$tabledata<-renderTable(table_final_percentage())	
 	
+	output$tabledata<-renderTable(table_final_percentage())
+
+	#TOP TRENDING TWEETS
+
+	toptrends<-function(place)
+	{
+		a_trends = availableTrendLocations()
+		woeid = a_trends[which(a_trends$name==place),3]
+		trend = getTrends(woeid)
+		trends = trend[1:2]
+
+		#To clean data and remove Non English words: (not required)
+		dat <- cbind(trends$name)
+		dat2 <- unlist(strsplit(dat, split=", "))
+		dat3 <- grep("dat2", iconv(dat2, "latin1", "ASCII", sub="dat2"))
+		dat4 <- dat2[-dat3]
+		#dat5 <- trends[,which(trends$name==dat4)]
+		return(dat4)
+	}
+
+	trend_table<-reactive({trend_table<-toptrends(  input$trendingTable ) })
+	output$trendtable<-renderTable(trend_table() )
+	
+	#TOP TRENDING TWEETS
+
+	toptrends<-function(place)
+	{
+		a_trends = availableTrendLocations()
+		woeid = a_trends[which(a_trends$name==place),3]
+		trend = getTrends(woeid)
+		trends = trend[1:2]
+
+		#To clean data and remove Non English words: (not required)
+		dat <- cbind(trends$name)
+		dat2 <- unlist(strsplit(dat, split=", "))
+		dat3 <- grep("dat2", iconv(dat2, "latin1", "ASCII", sub="dat2"))
+		if(dat3==0)
+		return(dat2)
+		dat4 <- dat2[-dat3]
+		
+		return(dat4)
+	}
+
+	trend_table<-reactive({trend_table<-toptrends(  input$trendingTable ) })
+	output$trendtable<-renderTable(trend_table() )	
+
 	#WORDCLOUD
+
 	wordclouds<-function(text)
 	{
 		library(tm)
-		library(wordcloud)
-		corpus <- Corpus(VectorSource(text))
+		corpus<-Corpus(VectorSource(text))
+		#corpus
+		#inspect(corpus[1])
 		#clean text
 		clean_text <- tm_map(corpus, removePunctuation)
 		#clean_text <- tm_map(clean_text, content_transformation)
@@ -209,41 +258,27 @@ shinyServer(function(input, output) {
 		clean_text <- tm_map(clean_text, removeWords, stopwords("english"))
 		clean_text <- tm_map(clean_text, removeNumbers)
 		clean_text <- tm_map(clean_text, stripWhitespace)
-		return (clean_text)
+		return(clean_text)
 	}
-	text_word<-reactive({text_word<-wordclouds( tweets() )})
+
+	text_word<-reactive({text_word<-wordclouds(  tweets() ) })
+	output$word<-renderPlot({wordcloud(text_word(), random.order=F,max.words=80, col=rainbow(100), scale=c(4.5,1.5))		
+				})
 	
-	output$word <- renderPlot({ wordcloud(text_word(),random.order=F,max.words=80, col=rainbow(100), scale=c(4.5, 1)) })
-
 	#HISTOGRAM
-	output$histPos<- renderPlot({ hist(table_final()$Positive, col=rainbow(10), main="Histogram of Positive Sentiment", xlab = "Positive Score") })
-	output$histNeg<- renderPlot({ hist(table_final()$Negative, col=rainbow(10), main="Histogram of Negative Sentiment", xlab = "Negative Score") })
-	output$histScore<- renderPlot({ hist(table_final()$Score, col=rainbow(10), main="Histogram of Score Sentiment", xlab = "Overall Score") })	
 
-	#Pie
-	slices <- reactive ({ slices <- c(sum(table_final()$Positive), sum(table_final()$Negative)) })
+	output$histPos<- renderPlot({hist(table_final()$Positive, col=rainbow(10), main = "Histogram of Positive Sentiment", xlab = "Positive Score") })
+	output$histNeg<- renderPlot({hist(table_final()$Negative, col=rainbow(10), main = "Histogram of Negative Sentiment", xlab = "Negative Score") })
+	output$histScore<- renderPlot({hist(table_final()$Score, col=rainbow(10), main = "Histogram of Score", xlab = "Overall Score")})
+	
+	#PIE CHART
+	
+	slices <- reactive({c(sum(table_final()$Positive), sum(table_final()$Negative)) })
 	labels <- c("Positive", "Negative")
 	library(plotrix)
-	output$piechart <- renderPlot({ pie3D(slices(), labels = labels, col=rainbow(length(labels)),explode=0.00, main="Sentiment Analysis") })
-
-	#Top trending tweets
-	toptrends <- function(place)
-	{
-		a_trends = availableTrendLocations()
-		woeid = a_trends[which(a_trends$name==place),3]
-		trend = getTrends(woeid)
-		trends = trend[1:2]
-
-		dat <- cbind(trends$name)
-		dat2 <- unlist(strsplit(dat, split=", "))
-		dat3 <- grep("dat2", iconv(dat2, "latin1", "ASCII", sub="dat2"))
-		dat4 <- dat2[-dat3]
-		return (dat4)
-	}
+	#pie(slices(), labels = labels, col=rainbow(length(labels)), main="Sentiment Analysis")
+	output$piechart<-renderPlot({pie3D(slices(), labels = labels, col=rainbow(length(labels)),explode=0.00, main="Sentiment Analysis") })
 	
-	trend_table<-reactive({ trend_table<-toptrends(input$trendingTable) })
-	output$trendtable <- renderTable(trend_table())
-
 	#TOP TWEETERS
 
 	# Top tweeters for a particular hashtag (Barplot)
@@ -261,31 +296,10 @@ shinyServer(function(input, output) {
 	# Plot the table above for the top 20
 
 	d<-reactive({d<-toptweeters(  twtList() ) })
-	output$tweetersplot<-renderPlot ( barplot(head(d()$Tweets, 20), names=head(d()$User, 20), horiz=F, las=2, main="Top Tweeters", col=1) )
+	output$tweetersplot<-renderPlot ( barplot(head(d()$Tweets, 20),  names=head(d()$User, 20), las=2, horiz=F, main="Top 20: Tweets per User", col=1) )
 	output$tweeterstable<-renderTable(head(d(),20))
-	
-	#TIMELINE PLOT //Ensure Time-7 gives right date. Tricky at beginning of month
-	
-	# Convert the list to a data frame
-	#df<-reactive({ df <- twListToDF(twtList()) })
- 	#df() <- unique(df())
 
-	# To ensure accuracy, there should be no more than 1500 tweets in a single day	.
-	# If there are 1500 on any single day, then you're truncating that day's 
-	#tweets, and you'll need to try to get ROAuth (below) working.
-	#df()$date <- format(df()$created, format="%Y-%m-%d")
-	#table(df()$date)
-
-	# Plot the frequency of tweets over time in two hour windows
-	# Modified from http://michaelbommarito.com/2011/03/12/a-quick-look-at-march11-saudi-tweets/
-	#minutes <- 60
-	#output$timelinePlot<-renderPlot({ ggplot(data=df(), aes(x=created)) + 
-  	#geom_histogram(aes(fill=..count..), binwidth=60*minutes) + 
-  	#scale_x_datetime("Date") + 
-  	#scale_y_continuous("Frequency") })
-
-	
-	#TOP 10 HASHTAGS OF USER
+	#Top 10 TWEETERS
 
 	tw1 <- reactive({ tw1 = userTimeline(input$user, n = 3200) })
 	tw <- reactive({ tw = twListToDF(tw1()) })
@@ -312,5 +326,8 @@ shinyServer(function(input, output) {
 	p<- reactive ({ p = ggplot(dat2(), aes(x = tag, y = freq)) + geom_bar(stat="identity", fill = "blue")
 	p + coord_flip() + labs(title = "Hashtag frequencies in the tweets of the tweeter") })
 	output$tophashtagsplot <- renderPlot ({ p() })	
+	
+
 
 }) #shiny server
+
